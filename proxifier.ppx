@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxifierProfile version="101" platform="MacOSX" product_id="2" product_minver="200">
+    <Options>
+        <Resolve>
+            <AutoModeDetection enabled="true"/>
+            <ViaProxy enabled="false">
+                <TryLocalDnsFirst enabled="false"/>
+            </ViaProxy>
+            <ExclusionList ExcludeSimpleHostnames="true" ExcludeLocalhost="true" ExcludeSelfHostname="true" ExcludeLocalDomain="true">localhost;%SimpleHostnames%;%ComputerName%;*.local;
+</ExclusionList>
+        </Resolve>
+        <Encryption mode="disabled"/>
+        <HttpProxiesSupport enabled="false"/>
+        <HandleDirectConnections enabled="false"/>
+        <ConnectionLoopDetection enabled="true"/>
+        <ProcessServices enabled="true"/>
+        <ProcessOtherUsers enabled="true"/>
+        <BlockUDP443 enabled="true"/>
+    </Options>
+    <ProxyList>
+        <Proxy id="100" type="SOCKS5">
+            <Address>127.0.0.1</Address>
+            <Port>1086</Port>
+            <Options>256</Options>
+        </Proxy>
+    </ProxyList>
+    <ChainList/>
+    <RuleList>
+        <Rule enabled="true">
+            <Name>PacketTunnel [auto-created]</Name>
+            <Applications>PacketTunnel</Applications>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>Localhost</Name>
+            <Targets>localhost; 127.0.0.1; ::1; %ComputerName%</Targets>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>ss-local [auto-created]</Name>
+            <Applications>ss-local</Applications>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>v2ray-plugin [auto-created]</Name>
+            <Applications>v2ray-plugin</Applications>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>local</Name>
+            <Targets>192.168.1.*</Targets>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>Mail.app</Name>
+            <Applications>"Mail.app"; "Mail"; com.apple.mail</Applications>
+            <Action type="Direct"/>
+        </Rule>
+        <Rule enabled="true">
+            <Name>all for proxy</Name>
+            <Targets>*.openai.com*;
+*.chatgpt.com;
+*.oaistatic.com;
+*.oaiusercontent.com;
+*.openai.com;
+*.oaistatic.com;
+*.habr.com;
+*.whatismyipaddress.com;
+*.ingest.sentry.io;
+*.softorino.com;
+*.redshieldvpn.com;
+*.wtfhappenedin1971.com;
+*.netflix.com;
+*.discord.com;
+*.discord.me;
+*.rtfm.co.ua;
+*.wonderzine.com;
+*.fbi.gov;
+*.technoplaza.net;
+*.2ip.ru;
+*.holod.media;
+*.fap-guru.cc;
+*.microsoft.com;
+*.s-microsoft.com;
+*.copilot.microsoft.com;
+*.rucriminal.info;
+*.baginya.org;
+*.bard.google.com;
+*.gemini.google.com;
+*.oaiusercontent.com;
+*.openai.com;
+*.oaistatic.com;
+*.perplexity.ai;
+*.onfastspring.com;
+*.monica.im;
+*.bogmedia.org;
+*.kinopub.online;
+*.mywishlist.ru;
+*.kinogo.biz;
+*.meduza.io;
+*.walmart.com;
+*.proton.me;
+*.protonmail.com;
+*.spotify.com;
+*.twitter.com;
+*.twimg.com;
+*.t.co;
+*.linkedin.com;
+*.linked.in;
+*.facebook.com;
+*.fbcdn.net;
+*.instagram.com;
+*.tiktok.com;
+*.svtv.org;
+*.quora.com;
+*.patreon.com;
+*.rezka.ag;
+*.filmix.ac;
+*.kino.pub;
+*.sci-hub.ru;
+*.skype.com;
+*.live.com;
+*.bing.com;
+*.skypeassets.com;
+*.bbc.com;
+*.nnmclub.to;
+*.bbc.com;
+*.voidboost.cc;
+*.i.ytimg.com;
+*.yt3.ggpht.com;
+*.coursera.org;
+*.rutracker.org;
+*.rutracker*;
+*.nnmclub*;
+*.nnm-club*;
+*.pornhub.com;
+*.xvideos.com;
+*.libgen.li;
+*.x.com;
+*.setapp.com;
+*.rezka*;
+*.medium.com*;
+*.cosmopolitan.com;
+*.library.lol;
+*.medium.com;
+</Targets>
+            <Action type="Proxy">100</Action>
+        </Rule>
+        <Rule enabled="true">
+            <Name>Default</Name>
+            <Action type="Direct"/>
+        </Rule>
+    </RuleList>
+</ProxifierProfile>
