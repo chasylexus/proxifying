@@ -143,6 +143,7 @@
 *.cosmopolitan.com;
 *.library.lol;
 *.1xbet.com;
+*.hey.com;
 </Targets>
             <Action type="Proxy">100</Action>
         </Rule>
