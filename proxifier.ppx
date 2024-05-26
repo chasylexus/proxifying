@@ -144,6 +144,7 @@
 *.library.lol;
 *.1xbet.com;
 *.hey.com;
+*.evonomics.com;
 </Targets>
             <Action type="Proxy">100</Action>
         </Rule>
