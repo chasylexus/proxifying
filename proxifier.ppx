@@ -146,6 +146,7 @@
 *.1xbet.com;
 *.hey.com;
 *.evonomics.com;
+*.radarr.video;
 </Targets>
             <Action type="Proxy">100</Action>
         </Rule>
