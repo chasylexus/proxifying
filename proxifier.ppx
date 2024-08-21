@@ -110,6 +110,7 @@
 *.facebook.com;
 *.fbcdn.net;
 *.instagram.com;
+*.cdninstagram.com;
 *.tiktok.com;
 *.svtv.org;
 *.quora.com;
@@ -127,8 +128,6 @@
 *.nnmclub.to;
 *.bbc.com;
 *.voidboost.cc;
-*.i.ytimg.com;
-*.yt3.ggpht.com;
 *.coursera.org;
 *.rutracker.org;
 *.rutracker*;
@@ -147,6 +146,12 @@
 *.hey.com;
 *.evonomics.com;
 *.radarr.video;
+*.youtube.com;
+*.googlevideo.com;
+*.i.ytimg.com;
+*.i3.ytimg.com;
+*.img.youtube.com;
+*.yt3.ggpht.com;
 </Targets>
             <Action type="Proxy">100</Action>
         </Rule>
