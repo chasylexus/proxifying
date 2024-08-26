@@ -57,8 +57,8 @@
             <Action type="Direct"/>
         </Rule>
         <Rule enabled="true">
-            <Name>all for proxy</Name>
-            <Targets>claude.ai;
+            <Name>all for proxy</Name><Targets>
+claude.ai;
 fburl.com;
 *google*;
 *nnm-club*;
