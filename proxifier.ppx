@@ -59,7 +59,7 @@
         <Rule enabled="true">
             <Name>all direct</Name><Targets>
 kvk.com;
-</Targets>
+            </Targets>
             <Action type="Direct"/>
         </Rule>
         <Rule enabled="true">
@@ -177,7 +177,7 @@ fburl.com;
 *.xvideos.com*;
 *.youtube.com*;
 *.yt3.ggpht.com*;
-</Targets>
+            </Targets>
             <Action type="Proxy">100</Action>
         </Rule>
         <Rule enabled="true">
