@@ -95,6 +95,7 @@ fburl.com;
 *.googlevideo.com*;
 *.gstatic.com*;
 *.habr.com*;
+*.habrastorage.org;
 *.hdrezka.ac*;
 *.hey.com*;
 *.holod.media*;
