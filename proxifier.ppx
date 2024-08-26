@@ -58,7 +58,7 @@
         </Rule>
         <Rule enabled="true">
             <Name>all direct</Name><Targets>
-kvk.com
+kvk.com;
 </Targets>
             <Action type="Direct"/>
         </Rule>
