@@ -1,4 +1,4 @@
-# Shadowrocket
+# Default
 [General]
 fallback-dns-server = system
 bypass-system = true
