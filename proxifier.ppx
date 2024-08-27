@@ -83,6 +83,7 @@ fburl.com;
 *.browser-intake-datadoghq.com*;
 *.cdninstagram.com*;
 *.chatgpt.com*;
+*.cnn.com*;
 *.copilot.microsoft.com*;
 *.cosmopolitan.com*;
 *.coursera.org*;
