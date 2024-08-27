@@ -59,6 +59,7 @@
         <Rule enabled="true">
             <Name>all direct</Name><Targets>
 kvk.com;
+*.notion.so*;
             </Targets>
             <Action type="Direct"/>
         </Rule>
