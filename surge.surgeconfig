@@ -41,6 +41,7 @@ DOMAIN-SUFFIX,bogmedia.org,PROXY
 DOMAIN-SUFFIX,browser-intake-datadoghq.com,PROXY
 DOMAIN-SUFFIX,cdninstagram.com,PROXY
 DOMAIN-SUFFIX,chatgpt.com,PROXY
+DOMAIN-SUFFIX,cnn.com,PROXY
 DOMAIN-SUFFIX,copilot.microsoft.com,PROXY
 DOMAIN-SUFFIX,cosmopolitan.com,PROXY
 DOMAIN-SUFFIX,coursera.org,PROXY
