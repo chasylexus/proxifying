@@ -22,7 +22,6 @@ PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
 
 # Internet
 DOMAIN,kvk.com,DIRECT
-DOMAIN-SUFFIX,notion.so,DIRECT
 DOMAIN,claude.ai,PROXY
 DOMAIN,fburl.com,PROXY
 DOMAIN-KEYWORD,google,PROXY
