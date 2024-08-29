@@ -83,6 +83,7 @@ fburl.com;
 *.bing.com*;
 *.bogmedia.org*;
 *.browser-intake-datadoghq.com*;
+*.canva.com*;
 *.cdninstagram.com*;
 *.chatgpt.com*;
 *.cnn.com*;
