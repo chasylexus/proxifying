@@ -24,12 +24,6 @@ PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
 DOMAIN,kvk.com,DIRECT
 DOMAIN,claude.ai,PROXY
 DOMAIN,fburl.com,PROXY
-DOMAIN-KEYWORD,google,PROXY
-DOMAIN-KEYWORD,nnm-club,PROXY
-DOMAIN-KEYWORD,nnmclub,PROXY
-DOMAIN-KEYWORD,rezka,PROXY
-DOMAIN-KEYWORD,rutracker,PROXY
-DOMAIN-KEYWORD,tiktokv,PROXY
 DOMAIN-SUFFIX,1xbet.com,PROXY
 DOMAIN-SUFFIX,2ip.io,PROXY
 DOMAIN-SUFFIX,2ip.ru,PROXY
@@ -146,6 +140,12 @@ DOMAIN-SUFFIX,xnxx.com,PROXY
 DOMAIN-SUFFIX,xvideos.com,PROXY
 DOMAIN-SUFFIX,youtube.com,PROXY
 DOMAIN-SUFFIX,yt3.ggpht.com,PROXY
+DOMAIN-KEYWORD,google,PROXY
+DOMAIN-KEYWORD,nnm-club,PROXY
+DOMAIN-KEYWORD,nnmclub,PROXY
+DOMAIN-KEYWORD,rezka,PROXY
+DOMAIN-KEYWORD,rutracker,PROXY
+DOMAIN-KEYWORD,tiktokv,PROXY
 
 # Proxy Rules plist
 # RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/proxy/base.list,PROXY
