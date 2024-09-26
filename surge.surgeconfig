@@ -164,7 +164,7 @@ DOMAIN-KEYWORD,tiktokv,PROXY
 # RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/direct/iran-cid.list,DIRECT
 # Reject Rules plist
 # RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/iran.list,REJECT
-RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/adguards.list,REJECT
+# RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/adguards.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/apple.list,REJECT
 # RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/youtube.list,REJECT
 RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/spotify.list,REJECT
