@@ -1,4 +1,6 @@
 # Default
+[Script]
+script1 = type=cron,cronexp="* * * * *",script-path=https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
 [General]
 fallback-dns-server = system
 bypass-system = true
