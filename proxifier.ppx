@@ -66,9 +66,6 @@ kvk.com;
             <Name>all for proxy</Name><Targets>
 claude.ai;
 fburl.com;
-*egdeuno*;
-*ookla*;
-*speedtest*;
 *.1xbet.com*;
 *.2ip.io*;
 *.2ip.ru*;
@@ -96,6 +93,7 @@ fburl.com;
 *.dailymail.co.uk*;
 *.discord.com*;
 *.discord.me*;
+*.edgeuno.com;
 *.evonomics.com*;
 *.facebook.com*;
 *.fap-guru.cc*;
@@ -201,8 +199,10 @@ fburl.com;
 *google*;
 *nnm-club*;
 *nnmclub*;
+*ookla*;
 *rezka*;
 *rutracker*;
+*speedtest*;
 *tiktokv*;
             </Targets>
             <Action type="Proxy">100</Action>
