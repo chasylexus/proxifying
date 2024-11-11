@@ -84,6 +84,7 @@ fburl.com;
 *.browser-intake-datadoghq.com*;
 *.canva.com*;
 *.cdninstagram.com*;
+*.cdnst.net*;
 *.chatgpt.com*;
 *.cnn.com*;
 *.copilot.microsoft.com*;
