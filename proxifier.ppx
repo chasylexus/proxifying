@@ -80,6 +80,7 @@ fburl.com;
 *.bard.google.com*;
 *.bbc.com*;
 *.bing.com*;
+*.blockchain.com*;
 *.bogmedia.org*;
 *.browser-intake-datadoghq.com*;
 *.canva.com*;
