@@ -26,6 +26,7 @@ PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
 DOMAIN,kvk.com,DIRECT
 DOMAIN-SUFFIX,youtu.be,DIRECT
 DOMAIN-SUFFIX,yt.be,DIRECT
+DOMAIN-SUFFIX,ytimg.com,DIRECT
 DOMAIN,claude.ai,PROXY
 DOMAIN,fburl.com,PROXY
 DOMAIN-SUFFIX,1xbet.com,PROXY
