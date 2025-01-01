@@ -203,6 +203,7 @@ fburl.com;
 *.youtube-nocookie.com*;
 *.youtube-ui.l.google.com*;
 *.youtube.com*;
+*.youtube.googleapis.com*;
 *.youtubeembeddedplayer.googleapis.com*;
 *.yt.be*;
 *.ytimg.com*;
