@@ -163,6 +163,7 @@ DOMAIN-SUFFIX,youtu.be,PROXY
 DOMAIN-SUFFIX,youtube-nocookie.com,PROXY
 DOMAIN-SUFFIX,youtube-ui.l.google.com,PROXY
 DOMAIN-SUFFIX,youtube.com,PROXY
+DOMAIN-SUFFIX,youtubeembeddedplayer.googleapis.com,PROXY
 DOMAIN-SUFFIX,yt.be,PROXY
 DOMAIN-SUFFIX,yt3.ggpht.com,PROXY
 DOMAIN-KEYWORD,google,PROXY
