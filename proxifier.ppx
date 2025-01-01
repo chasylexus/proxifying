@@ -205,6 +205,7 @@ fburl.com;
 *.youtube.com*;
 *.youtube.googleapis.com*;
 *.youtubeembeddedplayer.googleapis.com*;
+*.youtubei.googleapis.com*;
 *.yt.be*;
 *.ytimg.com*;
 *google*;
