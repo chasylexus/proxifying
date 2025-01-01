@@ -201,6 +201,7 @@ fburl.com;
 *.xvideos.com*;
 *.youtu.be*;
 *.youtube-nocookie.com*;
+*.youtube-ui.l.google.com*;
 *.youtube.com*;
 *.yt.be*;
 *.ytimg.com*;
