@@ -87,6 +87,7 @@ fburl.com;
 *.cdninstagram.com*;
 *.cdnst.net*;
 *.chatgpt.com*;
+*.clickhouse.com*;
 *.cnn.com*;
 *.copilot.microsoft.com*;
 *.cosmopolitan.com*;
