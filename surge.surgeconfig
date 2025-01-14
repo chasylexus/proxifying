@@ -83,6 +83,7 @@ DOMAIN-SUFFIX,ingest.sentry.io,PROXY
 DOMAIN-SUFFIX,instagram.com,PROXY
 DOMAIN-SUFFIX,internalfb.com,PROXY
 DOMAIN-SUFFIX,jakeroid.com,PROXY
+DOMAIN-SUFFIX,jetbrains.com,PROXY
 DOMAIN-SUFFIX,kino.pub,PROXY
 DOMAIN-SUFFIX,kinogo.biz,PROXY
 DOMAIN-SUFFIX,kinopub.online,PROXY
