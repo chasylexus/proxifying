@@ -214,6 +214,7 @@ fburl.com;
 *.yt-video-upload.l.google.com*;
 *.yt.be*;
 *.ytimg.com*;
+*.zapier-deployment.com*;
 *.zapier.com*;
 *google*;
 *nnm-club*;
