@@ -82,6 +82,7 @@ fburl.com;
 *.bing.com*;
 *.blockchain.com*;
 *.bogmedia.org*;
+*.branch.io*;
 *.browser-intake-datadoghq.com*;
 *.canva.com*;
 *.cdninstagram.com*;
