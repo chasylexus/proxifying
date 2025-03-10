@@ -42,6 +42,7 @@ DOMAIN-SUFFIX,bbc.com,PROXY
 DOMAIN-SUFFIX,bing.com,PROXY
 DOMAIN-SUFFIX,blockchain.com,PROXY
 DOMAIN-SUFFIX,bogmedia.org,PROXY
+DOMAIN-SUFFIX,branch.io,PROXY
 DOMAIN-SUFFIX,browser-intake-datadoghq.com,PROXY
 DOMAIN-SUFFIX,canva.com,PROXY
 DOMAIN-SUFFIX,cdninstagram.com,PROXY
