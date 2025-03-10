@@ -172,6 +172,7 @@ fburl.com;
 *.scdn.co*;
 *.sci-hub.ru*;
 *.sci-hub.se*;
+*.sentry.io*;
 *.setapp.com*;
 *.skype.com*;
 *.skypeassets.com*;
