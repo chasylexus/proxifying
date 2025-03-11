@@ -657,7 +657,7 @@
 			<key>Window Type</key>
 			<integer>2</integer>
 			<key>Working Directory</key>
-			<string>/Users/$USER</string>
+			<string>~</string>
 		</dict>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
