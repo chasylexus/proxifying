@@ -80,6 +80,7 @@ DOMAIN-SUFFIX,holod.media,PROXY
 DOMAIN-SUFFIX,i.ytimg.com,PROXY
 DOMAIN-SUFFIX,i3.ytimg.com,PROXY
 DOMAIN-SUFFIX,icloud.com,PROXY
+DOMAIN-SUFFIX,ikea.com.tr,PROXY
 DOMAIN-SUFFIX,ingest.sentry.io,PROXY
 DOMAIN-SUFFIX,instagram.com,PROXY
 DOMAIN-SUFFIX,internalfb.com,PROXY
