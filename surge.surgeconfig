@@ -52,6 +52,7 @@ DOMAIN-SUFFIX,chatgpt.com,PROXY
 DOMAIN-SUFFIX,claude.ai,PROXY
 DOMAIN-SUFFIX,claude.com,PROXY
 DOMAIN-SUFFIX,clickhouse.com,PROXY
+DOMAIN-SUFFIX,cloud.microsoft,PROXY
 DOMAIN-SUFFIX,cnn.com,PROXY
 DOMAIN-SUFFIX,copilot.microsoft.com,PROXY
 DOMAIN-SUFFIX,cosmopolitan.com,PROXY
