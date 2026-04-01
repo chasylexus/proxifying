@@ -153,6 +153,7 @@ fburl.com;
 *.notion.so*;
 *.oaistatic.com*;
 *.oaiusercontent.com*;
+*.office.com*;
 *.onfastspring.com*;
 *.ooklaserver.net;
 *.openai.com*;
