@@ -191,6 +191,7 @@ fburl.com;
 *.spotify.com*;
 *.stackoverflow.com*;
 *.stripe.com*;
+*.svc.ms*;
 *.svtv.org*;
 *.t.co*;
 *.tableau.com*;
