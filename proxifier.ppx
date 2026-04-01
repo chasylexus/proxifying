@@ -197,6 +197,7 @@ fburl.com;
 *.stackoverflow.com*;
 *.static.microsoft*;
 *.stripe.com*;
+*.stytch.com*;
 *.svc.ms*;
 *.svtv.org*;
 *.t.co*;
