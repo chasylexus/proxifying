@@ -36,6 +36,7 @@ DOMAIN-SUFFIX,amazon.co.uk,PROXY
 DOMAIN-SUFFIX,amazon.com,PROXY
 DOMAIN-SUFFIX,amazon.de,PROXY
 DOMAIN-SUFFIX,anthropic.com,PROXY
+DOMAIN-SUFFIX,azurewebsites.net,PROXY
 DOMAIN-SUFFIX,baginya.org,PROXY
 DOMAIN-SUFFIX,bard.google.com,PROXY
 DOMAIN-SUFFIX,bbc.com,PROXY
