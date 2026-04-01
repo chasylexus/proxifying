@@ -191,6 +191,7 @@ fburl.com;
 *.speedtest.net*;
 *.spotify.com*;
 *.stackoverflow.com*;
+*.static.microsoft*;
 *.stripe.com*;
 *.svc.ms*;
 *.svtv.org*;
