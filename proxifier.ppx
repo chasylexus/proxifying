@@ -76,6 +76,7 @@ fburl.com;
 *.amazon.com*;
 *.amazon.de*;
 *.anthropic.com*;
+*.azurewebsites.net*;
 *.baginya.org*;
 *.bard.google.com*;
 *.bbc.com*;
