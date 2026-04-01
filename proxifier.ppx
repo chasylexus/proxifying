@@ -138,6 +138,7 @@ fburl.com;
 *.linked.in*;
 *.linkedin.com*;
 *.live.com*;
+*.live.net*;
 *.medium.com*;
 *.meduza.io*;
 *.meetingbar.app*;
