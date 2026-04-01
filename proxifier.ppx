@@ -156,6 +156,7 @@ fburl.com;
 *.oaistatic.com*;
 *.oaiusercontent.com*;
 *.office.com*;
+*.office.net*;
 *.onfastspring.com*;
 *.ooklaserver.net;
 *.openai.com*;
