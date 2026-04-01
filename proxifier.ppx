@@ -92,6 +92,7 @@ fburl.com;
 *.claude.ai*;
 *.claude.com*;
 *.clickhouse.com*;
+*.cloud.microsoft*;
 *.cnn.com*;
 *.copilot.microsoft.com*;
 *.cosmopolitan.com*;
