@@ -8,6 +8,7 @@
 dns-server = system
 fallback-dns-server = system
 bypass-system = true
+exclude-simple-hostnames = true
 skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,127.0.0.1,localhost,*.local,*.lan,captive.apple.com,*.icloud.com,*.icloud-content.com,*.apple-cloudkit.com,connectivitycheck.gstatic.com,detectportal.firefox.com,msftconnecttest.com,nmcheck.gnome.org,*.hotspot.*,*.wifi.*,*.wi-fi.*,*.guest.*,*.airport.*,*.airports.*,*.aero,*.boingo.com,*.wayport.net,*.nomadix.com,*.aptilo.com,*.icomera.com,*.turkcell.com.tr,*.turktelekom.com.tr,*.vodafone.com.tr,*.du.ae,*.etisalat.ae,*.mts.ru,*.beeline.ru,*.megafon.ru,*.tele2.ru,*.yota.ru,*.sbrf.ru,*.wifi.mts.ru,*.hotspot.beeline.ru
 
 always-real-ip = captive.apple.com
