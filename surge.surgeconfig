@@ -33,6 +33,7 @@ PROXY = socks5, localhost, 2080
 PROCESS-NAME,/Applications/Throne.app/,DIRECT
 PROCESS-NAME,/Applications/nekoray.app/,DIRECT
 PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
+PROCESS-NAME,/Applications/Telegram.app/Contents/MacOS/Telegram,PROXY
 
 # ============================================================
 # 2. Inline overrides
