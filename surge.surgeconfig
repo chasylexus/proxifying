@@ -69,7 +69,6 @@ DOMAIN-SUFFIX,play.google.com,DIRECT
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,DIRECT
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list,DIRECT
 
-
 # --- xAI / Grok ---
 DOMAIN-SUFFIX,grok.com,PROXY
 DOMAIN-SUFFIX,x.ai,PROXY
