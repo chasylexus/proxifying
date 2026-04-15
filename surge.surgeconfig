@@ -67,6 +67,7 @@ DOMAIN-SUFFIX,notebooklm.google,DIRECT
 DOMAIN-SUFFIX,clients6.google.com,DIRECT
 DOMAIN-SUFFIX,play.google.com,DIRECT
 DOMAIN-SUFFIX,proactivebackend-pa.googleapis.com,DIRECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list,DIRECT
 
 
 # --- xAI / Grok ---
@@ -302,15 +303,33 @@ FINAL,DIRECT
 # Surge → Modules → Install from Local File
 # ============================================================
 
-gemini.google.com = server:https://xbox-dns.ru/dns-query
-generativelanguage.googleapis.com = server:https://xbox-dns.ru/dns-query
-bard.google.com = server:https://xbox-dns.ru/dns-query
-aistudio.google.com = server:https://xbox-dns.ru/dns-query
 deepmind.com = server:https://xbox-dns.ru/dns-query
 deepmind.google = server:https://xbox-dns.ru/dns-query
+apis.google.com = server:https://xbox-dns.ru/dns-query
+colab.research.google.com = server:https://xbox-dns.ru/dns-query
+geller-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+generativelanguage.googleapis.com = server:https://xbox-dns.ru/dns-query
+proactivebackend-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+ai.google.dev = server:https://xbox-dns.ru/dns-query
+generativeai.google = server:https://xbox-dns.ru/dns-query
+makersuite.google.com = server:https://xbox-dns.ru/dns-query
+aistudio.google.com = server:https://xbox-dns.ru/dns-query
+bard.google.com = server:https://xbox-dns.ru/dns-query
+gemini.google = server:https://xbox-dns.ru/dns-query
+gemini.google.com = server:https://xbox-dns.ru/dns-query
 notebooklm.google.com = server:https://xbox-dns.ru/dns-query
 notebooklm.google = server:https://xbox-dns.ru/dns-query
-play.google.com = server:https://xbox-dns.ru/dns-query
 clients6.google.com = server:https://xbox-dns.ru/dns-query
-alkalimining-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
-proactivebackend-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+jules.google = server:https://xbox-dns.ru/dns-query
+jules.google.com = server:https://xbox-dns.ru/dns-query
+labs.google = server:https://xbox-dns.ru/dns-query
+aisandbox-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+stitch.withgoogle.com = server:https://xbox-dns.ru/dns-query
+robinfrontend-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+aida.googleapis.com = server:https://xbox-dns.ru/dns-query
+antigravity-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
+antigravity.googleapis.com = server:https://xbox-dns.ru/dns-query
+antigravity.google = server:https://xbox-dns.ru/dns-query
+antigravity-unleash.goog = server:https://xbox-dns.ru/dns-query
+firebaseinstallations.googleapis.com = server:https://xbox-dns.ru/dns-query
+speechs3proto2-pa.googleapis.com = server:https://xbox-dns.ru/dns-query
