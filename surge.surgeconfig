@@ -44,17 +44,6 @@ DOMAIN,kvk.com,DIRECT
 # 3. AI SERVICES → PROXY
 # ============================================================
 
-# --- Telegram IPs ---
-IP-CIDR,5.28.192.0/18,PROXY,no-resolve
-IP-CIDR,91.105.192.0/23,PROXY,no-resolve
-IP-CIDR,91.108.4.0/22,PROXY,no-resolve
-IP-CIDR,91.108.8.0/21,PROXY,no-resolve
-IP-CIDR,91.108.16.0/21,PROXY,no-resolve
-IP-CIDR,91.108.56.0/22,PROXY,no-resolve
-IP-CIDR,95.161.64.0/20,PROXY,no-resolve
-IP-CIDR,149.154.160.0/20,PROXY,no-resolve
-IP-CIDR,185.76.151.0/24,PROXY,no-resolve
-
 # --- OpenAI ---
 DOMAIN-SUFFIX,openai.com,PROXY
 DOMAIN-SUFFIX,chatgpt.com,PROXY
@@ -279,6 +268,17 @@ DOMAIN-SUFFIX,xnxx.com,PROXY
 DOMAIN-SUFFIX,xvideos.com,PROXY
 DOMAIN-SUFFIX,redgifs.com,PROXY
 DOMAIN-SUFFIX,fap-guru.cc,PROXY
+
+# --- Telegram IPs ---
+IP-CIDR,5.28.192.0/18,PROXY
+IP-CIDR,91.105.192.0/23,PROXY
+IP-CIDR,91.108.4.0/22,PROXY
+IP-CIDR,91.108.8.0/21,PROXY
+IP-CIDR,91.108.16.0/21,PROXY
+IP-CIDR,91.108.56.0/22,PROXY
+IP-CIDR,95.161.64.0/20,PROXY
+IP-CIDR,149.154.160.0/20,PROXY
+IP-CIDR,185.76.151.0/24,PROXY
 
 # --- Google catch-all ---
 # DOMAIN-KEYWORD,google,PROXY
