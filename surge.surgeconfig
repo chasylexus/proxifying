@@ -258,6 +258,8 @@ DOMAIN-SUFFIX,peacocktv.com,PROXY
 DOMAIN-SUFFIX,playstation.com,PROXY
 
 # --- Misc ---
+DOMAIN-SUFFIX,tuxera.com,PROXY
+DOMAIN-SUFFIX,paragon-software.com,PROXY
 DOMAIN-SUFFIX,hey.com,PROXY
 DOMAIN-SUFFIX,quora.com,PROXY
 DOMAIN-SUFFIX,coursera.org,PROXY
