@@ -5,6 +5,7 @@
 # ============================================================
 
 [General]
+block-quic = all
 dns-server = system
 fallback-dns-server = system
 bypass-system = true
