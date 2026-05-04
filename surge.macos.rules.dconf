@@ -13,6 +13,7 @@ PROXY_T = select, DIRECT
 PROXY_A = select, DIRECT
 
 [Rule]
+PROCESS-NAME,trusttunnel_client,DIRECT
 PROCESS-NAME,/Applications/Throne.app/,DIRECT
 PROCESS-NAME,/Applications/nekoray.app/,DIRECT
 PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
