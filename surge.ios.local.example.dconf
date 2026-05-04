@@ -1,0 +1,15 @@
+[Proxy]
+# iOS detached proxy profile.
+# Native TrustTunnel support is experimental in Surge iOS 5.17.1+.
+# Omit client-id to let Surge generate its TrustTunnel client id. Add
+# client-id=... only when the endpoint expects a stable custom client id.
+# This is not the same as TrustTunnel's TLS client_random prefix/mask.
+
+PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+
+# Optional server-side pre-hop through an intermediate RU VPS. Surge still
+# dials TrustTunnel directly; the VPS must pass TCP/TLS through or route to the
+# real TT endpoint. Do not put real credentials in this example.
+# PROXY_T = trust-tunnel, ru-vps.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-origin.example.invalid, client-id=CHANGE_ME
+# PROXY_A = trust-tunnel, ru-vps.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-origin.example.invalid, client-id=CHANGE_ME

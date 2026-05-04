@@ -1,0 +1,7 @@
+# Local Surge proxy credentials and device-specific overrides.
+surge.local.dconf
+surge.macos.local.dconf
+surge.ios.local.dconf
+*.local.dconf
+surge.macos.local.conf
+surge.ios.local.conf
