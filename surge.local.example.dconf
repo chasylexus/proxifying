@@ -1,0 +1,7 @@
+[Proxy]
+# Generic reference only. The platform entrypoints now use separate detached
+# proxy files so macOS and iOS can keep different proxy implementations:
+# - surge.macos.local.dconf: local TrustTunnel SOCKS5 clients with auth
+# - surge.ios.local.dconf: native Surge TrustTunnel proxies
+#
+# Keep real endpoints and passwords only in the untracked local files.

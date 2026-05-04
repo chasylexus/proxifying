@@ -1,0 +1,32 @@
+#!MANAGED-CONFIG https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.surgeconfig interval=3600 strict=false
+
+# Managed macOS entrypoint.
+# Public routing and platform rules are loaded from GitHub; proxy credentials
+# stay in local detached surge.macos.local.dconf.
+
+[General]
+block-quic = all
+dns-server = system
+fallback-dns-server = system
+bypass-system = true
+exclude-simple-hostnames = true
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,127.0.0.1,localhost,*.local,*.lan,*.direct,captive.apple.com,cable.auth.com,apple.com,*.apple.com,icloud.com,*.icloud.com,icloud-content.com,*.icloud-content.com,apple-cloudkit.com,*.apple-cloudkit.com,mzstatic.com,*.mzstatic.com,connectivitycheck.gstatic.com,connectivity-check.ubuntu.com,detectportal.firefox.com,msftconnecttest.com,www.msftconnecttest.com,www.msftncsi.com,dns.msftncsi.com,nmcheck.gnome.org,network-test.debian.org,*.hotspot.*,*.wifi.*,*.wi-fi.*,*.guest.*,*.airport.*,*.airports.*,*.aero,*.boingo.com,*.wayport.net,*.nomadix.com,*.aptilo.com,*.icomera.com,*.du.ae,*.etisalat.ae,*.mts.ru,*.beeline.ru,*.megafon.ru,*.tele2.ru,*.yota.ru,*.sbrf.ru,*.wifi.mts.ru,*.hotspot.beeline.ru
+always-real-ip = captive.apple.com
+tun-excluded-routes = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32
+ipv6 = true
+test-timeout = 5
+loglevel = notify
+read-etc-hosts = false
+
+[DNS]
+enhanced-mode = fake-ip
+nameserver = system
+
+[Proxy]
+#!include surge.macos.local.dconf
+
+[Rule]
+#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf, https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
+
+[Host]
+#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
