@@ -1,0 +1,6 @@
+# Local SSID suspend list for Surge macOS.
+# Copy to surge.macos.ssid.local.dconf and keep real SSID names local.
+
+[SSID Setting]
+# SSID:OfficeWiFi suspend=true
+# SSID:Corp-* suspend=true
