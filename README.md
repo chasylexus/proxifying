@@ -95,6 +95,26 @@ SSID:Corp-* suspend=true
 
 This is different from `DIRECT` rules: `suspend=true` temporarily stops Surge processing on that network. On macOS, Surge needs location permission to read the current Wi-Fi SSID.
 
+The macOS wrappers include a local detached SSID section file:
+
+```ini
+#!include surge.macos.ssid.local.dconf
+```
+
+Create and edit only:
+
+```text
+~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
+```
+
+Example local file content:
+
+```ini
+[SSID Setting]
+SSID:OfficeWiFi suspend=true
+SSID:Corp-* suspend=true
+```
+
 ## Secrets
 
 Tracked files must not contain real proxy credentials, usernames, passwords, API tokens, or private endpoints. Local secret-bearing files are ignored by Git:
@@ -103,6 +123,7 @@ Tracked files must not contain real proxy credentials, usernames, passwords, API
 surge.local.dconf
 surge.macos.local.dconf
 surge.macos.trust-tunnel.local.dconf
+surge.macos.ssid.local.dconf
 surge.ios.local.dconf
 *.local.dconf
 ```
