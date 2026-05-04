@@ -26,7 +26,8 @@ nameserver = system
 #!include surge.macos.local.dconf
 
 [Rule]
-#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf, https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
+#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf
+#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
 
 [Host]
 #!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.surgeconfig
