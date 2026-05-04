@@ -1,0 +1,16 @@
+[Proxy]
+# macOS detached native TrustTunnel proxy profile.
+# Native TrustTunnel support in Surge is experimental. Keep real endpoints,
+# usernames and passwords only in surge.macos.trust-tunnel.local.dconf.
+#
+# The exposed Surge syntax supports custom SNI via sni=...
+# Do not add TrustTunnel client-random prefix/mask values here unless Surge
+# documents a dedicated config key for them.
+
+PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+
+# Optional stable Surge TrustTunnel client id. This is not the same as the
+# TrustTunnel TLS client_random prefix/mask.
+# PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid, client-id=CHANGE_ME
+# PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid, client-id=CHANGE_ME
