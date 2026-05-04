@@ -1,0 +1,4 @@
+[Rule]
+PROCESS-NAME,/Applications/Throne.app/,DIRECT
+PROCESS-NAME,/Applications/nekoray.app/,DIRECT
+PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT

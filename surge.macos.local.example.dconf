@@ -1,0 +1,8 @@
+[Proxy]
+# macOS detached proxy profile.
+# Surge -> local TrustTunnel SOCKS5 clients -> TrustTunnel endpoint.
+# Configure the TT clients to listen on these loopback ports with matching
+# SOCKS5 username/password. Keep the real passwords in surge.macos.local.dconf.
+
+PROXY_T = socks5, 127.0.0.1, 11080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
+PROXY_A = socks5, 127.0.0.1, 11081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
