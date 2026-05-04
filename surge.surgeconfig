@@ -6397,4 +6397,4 @@ IP-CIDR6,2c0f:ffa0::/32,PROXY_T,no-resolve
 FINAL,DIRECT
 
 [Host]
-127.0.0.1 = localhost
+localhost = 127.0.0.1
