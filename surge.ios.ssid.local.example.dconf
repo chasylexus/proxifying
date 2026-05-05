@@ -1,0 +1,8 @@
+# Local SSID suspend list for Surge iOS.
+# Copy to surge.ios.ssid.local.dconf and keep real SSID names local.
+# Keep the [SSID Setting] header; Surge expects this detached file as a sectioned fragment.
+
+[SSID Setting]
+# SSID:OfficeWiFi suspend=true,cellular-fallback=off
+# SSID:Corp-* suspend=true,cellular-fallback=off
+# "SSID:Office WiFi" suspend=true,cellular-fallback=off

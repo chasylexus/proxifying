@@ -4,5 +4,7 @@
 # - surge.macos.local.dconf: local TrustTunnel SOCKS5 clients with auth
 # - surge.macos.trust-tunnel.local.dconf: native Surge TrustTunnel proxies
 # - surge.ios.local.dconf: native Surge TrustTunnel proxies
+# - surge.macos.ssid.local.dconf / surge.ios.ssid.local.dconf: local SSID
+#   suspend lists
 #
 # Keep real endpoints and passwords only in the untracked local files.
