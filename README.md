@@ -22,7 +22,7 @@ surge.macos.rules.dconf
 surge.ruleset.*.list
 ```
 
-`surge.ruleset.*.list` files are kept for compatibility with older installed profiles. The primary macOS/iOS managed profiles use visible inline rules so Surge can show manual rules in the profile UI.
+`surge.ruleset.*.list` files are kept for compatibility with older installed profiles. The primary macOS managed profile uses visible inline rules so Surge can show manual rules in the profile UI.
 
 Local files that you create on your Mac and never commit:
 
@@ -39,7 +39,7 @@ surge.ios.local.dconf
 surge.ios.ssid.local.dconf
 ```
 
-Use `proxifying.macos.conf` for the normal macOS setup where Surge connects to local TrustTunnel SOCKS5 clients. Use `proxifying.macos.trust-tunnel.conf` only when you want Surge to connect to TrustTunnel natively.
+Use the managed macOS URL as the primary profile. It keeps public settings and rules on GitHub, while `[Proxy]` and `[SSID Setting]` load local detached files from this Mac. The `proxifying.macos*.conf` wrappers are local fallbacks.
 
 ## Fresh macOS Setup
 
@@ -69,11 +69,9 @@ If you do not use Git, download the repository ZIP from GitHub, unzip it, and op
 mkdir -p "$HOME/Library/Application Support/Surge/Profiles"
 ```
 
-4. Copy the public wrappers and local examples into Surge's profile folder.
+4. Copy only the local detached examples into Surge's profile folder.
 
 ```sh
-cp proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
-cp proxifying.macos.trust-tunnel.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf"
 cp surge.macos.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
 cp surge.macos.trust-tunnel.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf"
 cp surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
@@ -81,21 +79,33 @@ cp surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge
 
 On a brand-new Mac these copy commands are safe. On a Mac that already has working local `*.local.dconf` files, do not overwrite them; copy the examples to a temporary name and merge by hand.
 
-5. Choose the profile type.
+5. Fill in local proxy credentials.
 
-For most macOS installs, start with the SOCKS5 wrapper:
+For the normal SOCKS5-through-TrustTunnel setup, edit:
 
-```text
-proxifying.macos.conf
+```sh
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
 ```
 
-That profile expects separate local TrustTunnel SOCKS5 clients to listen on localhost. Surge itself only sees local SOCKS5 proxies, while the real TrustTunnel credentials stay in the local detached proxy file.
+Keep `[Proxy]`, `PROXY_T`, and `PROXY_A`. Replace only the placeholder values. The managed GitHub profile will load this file locally.
 
-Use this alternative only if you specifically want Surge's native experimental TrustTunnel support:
+6. Fill in local Wi-Fi suspend entries.
+
+```sh
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+```
+
+Keep `[SSID Setting]`. Add real SSID names only in this local file.
+
+7. Import the managed macOS profile in Surge.
+
+In Surge Mac, import a profile from URL:
 
 ```text
-proxifying.macos.trust-tunnel.conf
+https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.surgeconfig
 ```
+
+Select the imported managed profile as active. It should be managed by URL, while proxy credentials and SSID names remain local.
 
 ## Configure SOCKS5 TrustTunnel Proxies
 
@@ -124,7 +134,7 @@ What to put there:
 
 Before enabling this Surge profile, start the TrustTunnel SOCKS5 clients so they are listening on the ports in `surge.macos.local.dconf`.
 
-Then select the profile in Surge as:
+Then select the imported managed `surge.macos` profile in Surge. If you are using the older local fallback wrapper instead, select:
 
 ```text
 proxifying.macos
@@ -138,12 +148,12 @@ surge-cli switch-profile proxifying.macos
 
 ## Configure Native TrustTunnel
 
-Use this only for Surge's native experimental TrustTunnel proxy type.
+Use this only for Surge's native experimental TrustTunnel proxy type. With the primary managed `surge.macos` profile, put the native `trust-tunnel` proxy definitions in `surge.macos.local.dconf`, because that is the local file the managed profile includes.
 
-Edit this local file:
+For the primary managed profile, edit this local file:
 
 ```sh
-open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf"
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
 ```
 
 Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`. Replace placeholder hosts, usernames, passwords, and SNI values with your real local values.
@@ -160,9 +170,9 @@ Notes:
 
 - `sni=...` is where custom SNI goes.
 - Do not add TrustTunnel client-random prefix or mask values unless Surge documents a dedicated profile key for them.
-- The native TrustTunnel wrapper sets `udp-policy-not-supported-behaviour = REJECT`, so unsupported UDP is blocked instead of silently falling back.
+- The fallback native TrustTunnel wrapper sets `udp-policy-not-supported-behaviour = REJECT`, so unsupported UDP is blocked instead of silently falling back.
 
-Then select the profile in Surge as:
+If you use the older local fallback wrapper instead of the managed URL profile, put these definitions in `surge.macos.trust-tunnel.local.dconf` and select:
 
 ```text
 proxifying.macos.trust-tunnel
@@ -319,23 +329,29 @@ Only edit those local profiles when you need to change TrustTunnel credentials, 
 
 ## Managed Rules
 
-The macOS and iOS profiles keep proxy credentials in local detached files, while public routing rules stay inline in the managed GitHub profiles:
+The primary macOS profile is managed directly by URL:
 
 ```ini
-[Rule]
-#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf
+#!MANAGED-CONFIG https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.surgeconfig interval=3600 strict=false
+
+[SSID Setting]
+#!include surge.macos.ssid.local.dconf
+
+[Proxy]
+#!include surge.macos.local.dconf
 ```
 
-This keeps manual rules visible in Surge's profile/rule UI as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows.
+Public macOS rules live inline in that managed profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials and SSID names are never in GitHub.
 
 When you add or remove domains, edit the public managed rule layer:
 
 ```text
+surge.macos.surgeconfig
 surge.surgeconfig
 surge.macos.rules.dconf
 ```
 
-The `surge.ruleset.*.list` files are compatibility copies for older profiles that were installed during the External Resources experiment. Keep them in sync if you still use one of those older profiles, but new installs should use the managed inline profiles above.
+For macOS, `surge.macos.surgeconfig` is now the source that the laptop should import directly. `surge.macos.rules.dconf`, `surge.surgeconfig`, and `surge.ruleset.*.list` are kept for fallback/compatibility profiles.
 
 After the change is committed and pushed to GitHub, update the managed or linked profile in Surge Mac 6:
 
@@ -345,7 +361,7 @@ Profiles -> select proxifying profile -> Check Updates Now
 
 If Surge shows a notification that the managed profile has been updated, reload or reselect the profile. `surge-cli external-resource update all` updates third-party `RULE-SET`/`DOMAIN-SET` lists, but it does not force-refresh inline `#!include` managed profile content.
 
-For a local wrapper profile, `surge-cli reload` only reloads the wrapper from disk. Use Surge Mac 6's linked/managed profile update UI when the changed rules live in `surge.macos.rules.dconf` or `surge.surgeconfig`.
+For a local wrapper profile, `surge-cli reload` only reloads the wrapper from disk. Use Surge Mac 6's managed profile update UI when the changed rules live in `surge.macos.surgeconfig`.
 
 ## Validate The macOS Install
 
@@ -378,14 +394,13 @@ You should see `PROXY_T`, `PROXY_A`, the SSID section if you use it, and the `tr
 
 ## macOS Updating Later
 
-Routing rules update automatically from GitHub. For macOS wrapper changes, update the repository copy and copy only the public wrapper files again:
+Routing rules update automatically from GitHub. To force a managed profile update in Surge Mac 6:
 
-```sh
-cd ~/Downloads/proxifying
-git pull
-cp proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
-cp proxifying.macos.trust-tunnel.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf"
+```text
+Profiles -> select the imported surge.macos managed profile -> Check Updates Now
 ```
+
+Local detached files do not update from GitHub and should not be overwritten during routine updates.
 
 Do not overwrite these local files during routine updates:
 
