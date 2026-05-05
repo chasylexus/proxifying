@@ -22,6 +22,8 @@ surge.macos.rules.dconf
 surge.ruleset.*.list
 ```
 
+`surge.ruleset.*.list` files are kept for compatibility with older installed profiles. The primary macOS/iOS managed profiles use visible inline rules so Surge can show manual rules in the profile UI.
+
 Local files that you create on your Mac and never commit:
 
 ```text
@@ -300,7 +302,7 @@ The profile may appear as `surge.ios` or `surge.ios.surgeconfig`, depending on h
 
 6. Check that routing and Wi-Fi suspend are active.
 
-In Surge iOS, inspect the final/original profile view if available. You should see `PROXY_T`, `PROXY_A`, `[SSID Setting]`, and the shared external `surge.ruleset.*.list` resources.
+In Surge iOS, inspect the final/original profile view if available. You should see `PROXY_T`, `PROXY_A`, `[SSID Setting]`, and the shared manual rules from `surge.surgeconfig`.
 
 To test SSID suspend, connect to a Wi-Fi network listed in `surge.ios.ssid.local.dconf`. Surge should suspend itself on that network rather than merely route traffic as `DIRECT`.
 
@@ -317,31 +319,33 @@ Only edit those local profiles when you need to change TrustTunnel credentials, 
 
 ## Managed Rules
 
-The macOS and iOS profiles keep proxy credentials in local detached files, but all reusable routing data is loaded as Surge external resources:
+The macOS and iOS profiles keep proxy credentials in local detached files, while public routing rules stay inline in the managed GitHub profiles:
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t.list,PROXY_T,update-interval=3600
+[Rule]
+#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf
 ```
 
-When you add or remove domains, edit the matching public resource file:
+This keeps manual rules visible in Surge's profile/rule UI as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows.
+
+When you add or remove domains, edit the public managed rule layer:
 
 ```text
-surge.ruleset.proxy-t-priority.list
-surge.ruleset.proxy-t.list
-surge.ruleset.proxy-t-ip.list
-surge.ruleset.proxy-a.list
-surge.ruleset.direct.list
-surge.ruleset.macos.direct.list
+surge.surgeconfig
+surge.macos.rules.dconf
 ```
 
-After the change is committed and pushed to GitHub, Surge can fetch it through External Resources without waiting for the whole managed profile to refresh. In the macOS UI, use External Resources and press the update button. From Terminal:
+The `surge.ruleset.*.list` files are compatibility copies for older profiles that were installed during the External Resources experiment. Keep them in sync if you still use one of those older profiles, but new installs should use the managed inline profiles above.
 
-```sh
-surge-cli external-resource update all
-surge-cli reload
+After the change is committed and pushed to GitHub, update the managed or linked profile in Surge Mac 6:
+
+```text
+Profiles -> select proxifying profile -> Check Updates Now
 ```
 
-The top-level managed profiles still have hourly `#!MANAGED-CONFIG` headers, but routine routing edits should go into the `surge.ruleset.*.list` files above. Your local proxy credentials do not live in any managed or public ruleset file.
+If Surge shows a notification that the managed profile has been updated, reload or reselect the profile. `surge-cli external-resource update all` updates third-party `RULE-SET`/`DOMAIN-SET` lists, but it does not force-refresh inline `#!include` managed profile content.
+
+For a local wrapper profile, `surge-cli reload` only reloads the wrapper from disk. Use Surge Mac 6's linked/managed profile update UI when the changed rules live in `surge.macos.rules.dconf` or `surge.surgeconfig`.
 
 ## Validate The macOS Install
 
@@ -397,12 +401,7 @@ They contain local device settings and may contain secrets.
 
 ## Troubleshooting
 
-If macOS says `Linked profile not ready`, run:
-
-```sh
-surge-cli external-resource update all
-surge-cli reload
-```
+If macOS says `Linked profile not ready`, first check that the local detached files exist and keep their section headers. Then use Surge Mac 6's profile menu to run `Check Updates Now` for the managed or linked profile.
 
 If iOS says `Linked profile not ready`, check the local detached profile names first:
 
