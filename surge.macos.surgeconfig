@@ -1,8 +1,8 @@
-#!MANAGED-CONFIG https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.surgeconfig interval=3600 strict=false
+#!MANAGED-CONFIG https://raw.githubusercontent.com/chasylexus/proxifying/main/surge.macos.surgeconfig interval=3600 strict=false
 
 # Managed macOS entrypoint.
-# Public routing and platform rules are loaded from GitHub; proxy credentials
-# stay in local detached surge.macos.local.dconf.
+# Public routing and platform rules are loaded from GitHub.
+# Proxy credentials and SSID names belong in the local linked profile copy.
 
 [General]
 block-quic = all
@@ -23,10 +23,12 @@ enhanced-mode = fake-ip
 nameserver = system
 
 [SSID Setting]
-#!include surge.macos.ssid.local.dconf
+# Local SSID suspend rules belong in the linked profile copy.
 
 [Proxy]
-#!include surge.macos.local.dconf
+# Local linked profile copies must replace these placeholders with local proxies.
+PROXY_T = direct
+PROXY_A = direct
 
 [Rule]
 PROCESS-NAME,trusttunnel_client,DIRECT
