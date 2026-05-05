@@ -1,0 +1,7 @@
+# Proxifying Surge RULE-SET: macOS process DIRECT rules
+# Public resource. Keep credentials and endpoint details out of this file.
+
+PROCESS-NAME,trusttunnel_client
+PROCESS-NAME,/Applications/Throne.app/
+PROCESS-NAME,/Applications/nekoray.app/
+PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail

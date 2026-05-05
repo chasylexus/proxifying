@@ -1,0 +1,4 @@
+# Proxifying Surge RULE-SET: PROXY_T priority overrides
+# Public resource. Keep credentials and endpoint details out of this file.
+
+DOMAIN-SUFFIX,com.tr

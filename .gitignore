@@ -4,6 +4,7 @@ surge.macos.local.dconf
 surge.macos.trust-tunnel.local.dconf
 surge.macos.ssid.local.dconf
 surge.ios.local.dconf
+surge.ios.ssid.local.dconf
 *.local.dconf
 surge.macos.local.conf
 surge.ios.local.conf

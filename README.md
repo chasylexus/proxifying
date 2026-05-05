@@ -2,125 +2,433 @@
 
 Public Surge routing profiles and local wrapper templates.
 
-## macOS Surge
+Tracked files contain reusable routing logic, public wrappers, and placeholder examples only. Real proxy endpoints, usernames, passwords, Wi-Fi names, and other local-only values must live in ignored `*.local.dconf` files on each device.
 
-Use `proxifying.macos.conf` as the local macOS entrypoint. Keep proxy credentials only in `surge.macos.local.dconf`.
+## What Goes Where
 
-Place both files in:
+Public files from this repository:
 
 ```text
-~/Library/Application Support/Surge/Profiles/
+proxifying.macos.conf
+proxifying.macos.trust-tunnel.conf
+surge.ios.surgeconfig
+surge.ios.example.conf
+surge.macos.local.example.dconf
+surge.macos.trust-tunnel.local.example.dconf
+surge.macos.ssid.local.example.dconf
+surge.ios.local.example.dconf
+surge.ios.ssid.local.example.dconf
+surge.macos.rules.dconf
+surge.ruleset.*.list
 ```
 
-Create the local detached proxy file from the example:
-
-```sh
-mkdir -p ~/Library/Application\ Support/Surge/Profiles
-cp proxifying.macos.conf ~/Library/Application\ Support/Surge/Profiles/proxifying.macos.conf
-cp surge.macos.local.example.dconf ~/Library/Application\ Support/Surge/Profiles/surge.macos.local.dconf
-```
-
-Then edit only:
+Local files that you create on your Mac and never commit:
 
 ```text
 ~/Library/Application Support/Surge/Profiles/surge.macos.local.dconf
+~/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf
+~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
 ```
 
-Put local proxy definitions and credentials there. Do not commit that file.
+Local detached profiles that you create inside Surge iOS and never publish:
 
-The wrapper loads managed rules from GitHub:
+```text
+surge.ios.local.dconf
+surge.ios.ssid.local.dconf
+```
+
+Use `proxifying.macos.conf` for the normal macOS setup where Surge connects to local TrustTunnel SOCKS5 clients. Use `proxifying.macos.trust-tunnel.conf` only when you want Surge to connect to TrustTunnel natively.
+
+## Fresh macOS Setup
+
+1. Install Surge for macOS.
+
+Open Surge once before editing files. Allow the VPN/profile permissions when macOS asks. If you want SSID suspend rules, also allow Surge in:
+
+```text
+System Settings -> Privacy & Security -> Location Services
+```
+
+2. Download this repository.
+
+Using Terminal:
+
+```sh
+cd ~/Downloads
+git clone https://github.com/chasylexus/proxifying.git
+cd proxifying
+```
+
+If you do not use Git, download the repository ZIP from GitHub, unzip it, and open Terminal inside the unzipped folder.
+
+3. Create the Surge profile folder.
+
+```sh
+mkdir -p "$HOME/Library/Application Support/Surge/Profiles"
+```
+
+4. Copy the public wrappers and local examples into Surge's profile folder.
+
+```sh
+cp proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
+cp proxifying.macos.trust-tunnel.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf"
+cp surge.macos.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+cp surge.macos.trust-tunnel.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf"
+cp surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+```
+
+On a brand-new Mac these copy commands are safe. On a Mac that already has working local `*.local.dconf` files, do not overwrite them; copy the examples to a temporary name and merge by hand.
+
+5. Choose the profile type.
+
+For most macOS installs, start with the SOCKS5 wrapper:
+
+```text
+proxifying.macos.conf
+```
+
+That profile expects separate local TrustTunnel SOCKS5 clients to listen on localhost. Surge itself only sees local SOCKS5 proxies, while the real TrustTunnel credentials stay in the local detached proxy file.
+
+Use this alternative only if you specifically want Surge's native experimental TrustTunnel support:
+
+```text
+proxifying.macos.trust-tunnel.conf
+```
+
+## Configure SOCKS5 TrustTunnel Proxies
+
+Edit this local file:
+
+```sh
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+```
+
+Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`. Replace only the host, port, username, and password values as needed.
+
+Example shape:
 
 ```ini
-[Rule]
-#!include https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.macos.rules.dconf
+[Proxy]
+PROXY_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
+PROXY_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
 ```
 
-After changing the local files, select `proxifying.macos` in Surge or run:
+What to put there:
+
+- `127.0.0.1` means Surge connects to a proxy client running on this Mac.
+- `1080` and `1081` are local ports. They must match the ports used by your TrustTunnel SOCKS5 clients.
+- `tt_t` and `tt_a` are local SOCKS5 usernames. They must match the SOCKS5 credentials configured in the TrustTunnel clients.
+- The password fields are local-only secrets. Do not paste them into GitHub or into any tracked file.
+
+Before enabling this Surge profile, start the TrustTunnel SOCKS5 clients so they are listening on the ports in `surge.macos.local.dconf`.
+
+Then select the profile in Surge as:
+
+```text
+proxifying.macos
+```
+
+Or switch from Terminal:
 
 ```sh
 surge-cli switch-profile proxifying.macos
 ```
 
-The public managed rule layer updates hourly through its `#!MANAGED-CONFIG` header and external resource `update-interval=3600` settings.
+## Configure Native TrustTunnel
 
-## macOS Native TrustTunnel
+Use this only for Surge's native experimental TrustTunnel proxy type.
 
-Use `proxifying.macos.trust-tunnel.conf` when you want Surge to connect to TrustTunnel directly instead of going through local SOCKS5 TrustTunnel clients.
-
-Place the wrapper and detached proxy file in:
-
-```text
-~/Library/Application Support/Surge/Profiles/
-```
-
-Create the detached proxy file from the example:
+Edit this local file:
 
 ```sh
-cp proxifying.macos.trust-tunnel.conf ~/Library/Application\ Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf
-cp surge.macos.trust-tunnel.local.example.dconf ~/Library/Application\ Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf"
 ```
 
-Then edit only:
+Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`. Replace placeholder hosts, usernames, passwords, and SNI values with your real local values.
+
+Example shape:
+
+```ini
+[Proxy]
+PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+```
+
+Notes:
+
+- `sni=...` is where custom SNI goes.
+- Do not add TrustTunnel client-random prefix or mask values unless Surge documents a dedicated profile key for them.
+- The native TrustTunnel wrapper sets `udp-policy-not-supported-behaviour = REJECT`, so unsupported UDP is blocked instead of silently falling back.
+
+Then select the profile in Surge as:
 
 ```text
-~/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf
+proxifying.macos.trust-tunnel
 ```
 
-This profile keeps the same managed rules as `proxifying.macos.conf`, but uses native `trust-tunnel` proxy definitions. It sets `udp-policy-not-supported-behaviour = REJECT` so traffic that Surge cannot send through the selected TrustTunnel policy is blocked instead of silently falling back.
-
-Switch to it in Surge as `proxifying.macos.trust-tunnel` or run:
+Or switch from Terminal:
 
 ```sh
 surge-cli switch-profile proxifying.macos.trust-tunnel
 ```
 
-The shared macOS rules include `PROCESS-NAME,trusttunnel_client,DIRECT`, so the standalone TrustTunnel client process is excluded by process name without embedding a local home path.
+## Configure SSID Suspend
 
-## SSID Suspend
+SSID suspend fully pauses Surge on selected Wi-Fi networks. This is different from `DIRECT` routing: `DIRECT` still lets traffic enter Surge first, while `suspend=true` tells Surge to stop taking over that network.
 
-To disable Surge completely on selected Wi-Fi networks, add local or profile-level subnet settings:
+Edit this local file:
+
+```sh
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+```
+
+Keep the `[SSID Setting]` header. Surge expects this detached file as a sectioned profile fragment.
+
+Example:
 
 ```ini
 [SSID Setting]
 SSID:OfficeWiFi suspend=true
 SSID:GuestWiFi suspend=true
-```
-
-Wildcard SSID matching is supported:
-
-```ini
-[SSID Setting]
 SSID:Corp-* suspend=true
+"SSID:Office WiFi" suspend=true
 ```
 
-This is different from `DIRECT` rules: `suspend=true` temporarily stops Surge processing on that network. On macOS, Surge needs location permission to read the current Wi-Fi SSID.
+Rules:
 
-The macOS wrappers include a local detached SSID section file:
+- Replace `OfficeWiFi`, `GuestWiFi`, and `Corp-*` with your real Wi-Fi names.
+- Lines beginning with `#` are comments and do nothing.
+- Use `*` as a wildcard when several networks share a prefix.
+- If the SSID contains spaces, quote the whole subnet expression as shown above.
+- Real SSID names are local data; keep them in `surge.macos.ssid.local.dconf`, not in GitHub.
+
+The macOS wrappers include this local detached SSID file like this:
 
 ```ini
 [SSID Setting]
 #!include surge.macos.ssid.local.dconf
 ```
 
-Create and edit only:
+If SSID suspend does not trigger, confirm that Surge has Location Services permission, switch away from the Wi-Fi network, and reconnect to the matching network.
+
+## Fresh iOS Setup
+
+Use this flow for a new iPhone or iPad. On iOS, the public routing profile is managed from GitHub, while proxy credentials and Wi-Fi names are stored as local detached profiles inside the Surge app.
+
+1. Install Surge for iOS.
+
+Open Surge once and allow the VPN permission when iOS asks. If you want Wi-Fi SSID suspend rules, allow Location access for Surge in iOS Settings:
 
 ```text
-~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
+Settings -> Privacy & Security -> Location Services -> Surge
 ```
 
-Keep the `[SSID Setting]` header in that local file. Surge validates the detached SSID file as a sectioned profile fragment; plain `SSID:... suspend=true` lines without the header may be rejected.
+2. Create the local proxy detached profile first.
 
-Example local file content:
+In Surge iOS, open the profile list and create a new empty profile named exactly:
+
+```text
+surge.ios.local.dconf
+```
+
+Paste this shape into it:
+
+```ini
+[Proxy]
+PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+```
+
+Replace the placeholder hosts, usernames, passwords, and SNI values with your real local proxy values. Keep the `[Proxy]` header and keep the policy names `PROXY_T` and `PROXY_A`.
+
+Notes:
+
+- `sni=...` is where custom SNI goes.
+- Do not add TrustTunnel client-random prefix or mask values unless Surge documents a dedicated profile key for them.
+- These credentials stay only on the iOS device. Do not paste them into GitHub, issues, chats, or screenshots.
+
+3. Create the local SSID detached profile.
+
+Create another new empty profile named exactly:
+
+```text
+surge.ios.ssid.local.dconf
+```
+
+Paste this shape into it:
 
 ```ini
 [SSID Setting]
-SSID:OfficeWiFi suspend=true
-SSID:Corp-* suspend=true
+# SSID:OfficeWiFi suspend=true,cellular-fallback=off
+# SSID:Corp-* suspend=true,cellular-fallback=off
+# "SSID:Office WiFi" suspend=true,cellular-fallback=off
 ```
+
+Then remove `#` from the lines you want to enable and replace the example names with real Wi-Fi names.
+
+Rules:
+
+- Keep the `[SSID Setting]` header.
+- Use `suspend=true` to fully pause Surge on that Wi-Fi network.
+- Use `cellular-fallback=off` when you also want iOS Wi-Fi Assist or Hybrid behavior disabled on that network.
+- Use quotes when the Wi-Fi name contains spaces.
+- Real SSID names are local data; keep them in `surge.ios.ssid.local.dconf`, not in GitHub.
+
+4. Install the managed iOS profile from GitHub.
+
+In Surge iOS, install a profile from URL and paste:
+
+```text
+https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ios.surgeconfig
+```
+
+The managed profile includes only public settings and rules. It links to the local detached files you created above:
+
+```ini
+[Proxy]
+#!include surge.ios.local.dconf
+
+[SSID Setting]
+#!include surge.ios.ssid.local.dconf
+```
+
+If Surge shows `Linked profile not ready`, one of those local profiles is missing, has the wrong name, or does not start with its section header.
+
+5. Select the managed iOS profile and start Surge.
+
+The profile may appear as `surge.ios` or `surge.ios.surgeconfig`, depending on how Surge names imported profiles. Select the managed profile you installed from the GitHub Raw URL.
+
+6. Check that routing and Wi-Fi suspend are active.
+
+In Surge iOS, inspect the final/original profile view if available. You should see `PROXY_T`, `PROXY_A`, `[SSID Setting]`, and the shared external `surge.ruleset.*.list` resources.
+
+To test SSID suspend, connect to a Wi-Fi network listed in `surge.ios.ssid.local.dconf`. Surge should suspend itself on that network rather than merely route traffic as `DIRECT`.
+
+## iOS Updating Later
+
+The iOS managed profile updates from GitHub every hour. Local detached files do not update from GitHub and should not be overwritten:
+
+```text
+surge.ios.local.dconf
+surge.ios.ssid.local.dconf
+```
+
+Only edit those local profiles when you need to change TrustTunnel credentials, SNI, or the Wi-Fi suspend list.
+
+## Managed Rules
+
+The macOS and iOS profiles keep proxy credentials in local detached files, but all reusable routing data is loaded as Surge external resources:
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t.list,PROXY_T,update-interval=3600
+```
+
+When you add or remove domains, edit the matching public resource file:
+
+```text
+surge.ruleset.proxy-t-priority.list
+surge.ruleset.proxy-t.list
+surge.ruleset.proxy-t-ip.list
+surge.ruleset.proxy-a.list
+surge.ruleset.direct.list
+surge.ruleset.macos.direct.list
+```
+
+After the change is committed and pushed to GitHub, Surge can fetch it through External Resources without waiting for the whole managed profile to refresh. In the macOS UI, use External Resources and press the update button. From Terminal:
+
+```sh
+surge-cli external-resource update all
+surge-cli reload
+```
+
+The top-level managed profiles still have hourly `#!MANAGED-CONFIG` headers, but routine routing edits should go into the `surge.ruleset.*.list` files above. Your local proxy credentials do not live in any managed or public ruleset file.
+
+## Validate The macOS Install
+
+Check the SOCKS5 wrapper:
+
+```sh
+surge-cli --check "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
+```
+
+Check the native TrustTunnel wrapper:
+
+```sh
+surge-cli --check "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf"
+```
+
+Both commands should print:
+
+```text
+OK
+```
+
+After selecting a profile in Surge, you can check what Surge actually loaded:
+
+```sh
+surge-cli dump policy | grep -E "PROXY_T|PROXY_A"
+surge-cli dump profile original | grep -E "SSID Setting|trusttunnel_client"
+```
+
+You should see `PROXY_T`, `PROXY_A`, the SSID section if you use it, and the `trusttunnel_client` direct process rule. Avoid printing full local proxy definitions in shared logs because they may contain credentials.
+
+## macOS Updating Later
+
+Routing rules update automatically from GitHub. For macOS wrapper changes, update the repository copy and copy only the public wrapper files again:
+
+```sh
+cd ~/Downloads/proxifying
+git pull
+cp proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
+cp proxifying.macos.trust-tunnel.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.trust-tunnel.conf"
+```
+
+Do not overwrite these local files during routine updates:
+
+```text
+surge.macos.local.dconf
+surge.macos.trust-tunnel.local.dconf
+surge.macos.ssid.local.dconf
+surge.ios.local.dconf
+surge.ios.ssid.local.dconf
+```
+
+They contain local device settings and may contain secrets.
+
+## Troubleshooting
+
+If macOS says `Linked profile not ready`, run:
+
+```sh
+surge-cli external-resource update all
+surge-cli reload
+```
+
+If iOS says `Linked profile not ready`, check the local detached profile names first:
+
+```text
+surge.ios.local.dconf
+surge.ios.ssid.local.dconf
+```
+
+Then check that each local detached profile starts with its section header.
+
+If Surge says the profile is invalid on macOS, run `surge-cli --check` against the wrapper file. On iOS, open the managed profile and local detached profiles in the editor. In both cases, every local detached file must keep its section header:
+
+```text
+[Proxy]
+[SSID Setting]
+```
+
+If proxies do not connect in the macOS SOCKS5 setup, confirm that the TrustTunnel clients are running and listening on the same localhost ports used in `surge.macos.local.dconf`.
+
+If native TrustTunnel does not connect on iOS, check `surge.ios.local.dconf`: endpoint, port, username, password, and `sni=...` must all match your TrustTunnel server setup.
+
+If SSID suspend does not work, confirm Location Services permission for Surge, check that the SSID line is not commented out, and reconnect to the Wi-Fi network after editing the file.
 
 ## Secrets
 
-Tracked files must not contain real proxy credentials, usernames, passwords, API tokens, or private endpoints. Local secret-bearing files are ignored by Git:
+Tracked files must not contain real proxy credentials, usernames, passwords, API tokens, private endpoints, or personal local paths. Local secret-bearing files are ignored by Git:
 
 ```text
 surge.local.dconf
@@ -128,5 +436,6 @@ surge.macos.local.dconf
 surge.macos.trust-tunnel.local.dconf
 surge.macos.ssid.local.dconf
 surge.ios.local.dconf
+surge.ios.ssid.local.dconf
 *.local.dconf
 ```
