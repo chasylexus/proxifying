@@ -1,0 +1,14 @@
+# Local proxy policy list for the managed macOS Surge profile.
+# Copy this file to:
+# ~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt
+#
+# This policy-path file intentionally has no [Proxy] header.
+# Keep real hosts, usernames, passwords, and tokens only in the local copy.
+
+# SOCKS5 through local TrustTunnel clients:
+TT_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
+TT_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
+
+# Native Surge TrustTunnel example:
+# TT_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+# TT_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
