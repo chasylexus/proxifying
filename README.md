@@ -46,6 +46,8 @@ Use local wrappers as the primary profile source when you want editable proxy an
 
 ## Fresh macOS Setup
 
+This is the full from-scratch flow for a new Mac. The GitHub repository contains only public wrappers and safe examples. Real proxy credentials, real local ports, and real Wi-Fi names are entered only into local files inside Surge's profile folder.
+
 1. Install Surge for macOS.
 
 Open Surge once before editing files. Allow the VPN/profile permissions when macOS asks. If you want SSID suspend rules, also allow Surge in:
@@ -74,15 +76,27 @@ mkdir -p "$HOME/Library/Application Support/Surge/Profiles"
 
 4. Copy the local wrapper and detached local examples into Surge's profile folder.
 
+These commands create the working local files from safe examples. They use `cp -n`, so they will not overwrite real proxy credentials or SSID names if the files already exist.
+
 ```sh
-cp proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
-cp surge.macos.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
-cp surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+cp -n proxifying.macos.conf "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
+cp -n surge.macos.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+cp -n surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+chmod 600 "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+chmod 600 "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
 ```
 
-On a Mac that already has working local files, do not overwrite them; copy the examples to temporary names and merge by hand.
+After this step these editable local files should exist:
 
-5. Fill in local proxy credentials.
+```text
+~/Library/Application Support/Surge/Profiles/proxifying.macos.conf
+~/Library/Application Support/Surge/Profiles/surge.macos.local.dconf
+~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
+```
+
+On a Mac that already has working local files, do not overwrite them. If you need to compare with a fresh example, copy the example to a temporary name and merge by hand.
+
+5. Fill in local proxy settings.
 
 Edit:
 
@@ -91,6 +105,22 @@ open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dcon
 ```
 
 Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`; the public rule sets reference those names. Put real proxy endpoints, usernames, passwords, SNI values, or local loopback ports only in this local file.
+
+The copied file starts from this safe public shape:
+
+```ini
+[Proxy]
+PROXY_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
+PROXY_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
+```
+
+Replace the generic example ports `1080` / `1081`, usernames, and passwords with the values used by the local TrustTunnel clients on that Mac. Do not commit this edited file.
+
+The repository example is safe to publish and contains placeholders only:
+
+```text
+surge.macos.local.example.dconf
+```
 
 6. Optional Wi-Fi suspend entries.
 
@@ -105,6 +135,12 @@ Keep the `[SSID Setting]` header. Add private network names only here, for examp
 ```ini
 SSID:OfficeWiFi suspend=true
 SSID:Corp-* suspend=true
+```
+
+The repository example is safe to publish and contains only commented placeholder SSIDs:
+
+```text
+surge.macos.ssid.local.example.dconf
 ```
 
 7. Select the local wrapper in Surge.
@@ -124,6 +160,16 @@ surge-cli external-resource update all
 ```
 
 In the UI, use the External Resources / Rule Sets update action for the selected profile.
+
+9. Quick sanity check from Terminal.
+
+```sh
+surge-cli --check "$HOME/Library/Application Support/Surge/Profiles/proxifying.macos.conf"
+surge-cli external-resource update all
+surge-cli test-all-policies
+```
+
+The first command should print `OK`. The external-resource update should report success for the rule resources. `test-all-policies` should test `PROXY_T` and `PROXY_A`; if it fails, check only the local proxy file and the TrustTunnel clients, not the public rule-set files.
 
 ## Configure SOCKS5 TrustTunnel Proxies
 
@@ -146,7 +192,7 @@ PROXY_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-rela
 What to put there:
 
 - `127.0.0.1` means Surge connects to a proxy client running on this Mac.
-- `1080` and `1081` are local ports. They must match the ports used by your TrustTunnel SOCKS5 clients.
+- `1080` and `1081` are generic example ports. Replace them with the local ports used by your TrustTunnel SOCKS5 clients.
 - `tt_t` and `tt_a` are local SOCKS5 usernames. They must match the SOCKS5 credentials configured in the TrustTunnel clients.
 - The password fields are local-only secrets. Do not paste them into GitHub or into any tracked file.
 
