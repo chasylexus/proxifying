@@ -272,6 +272,7 @@ DOMAIN-SUFFIX,openai.com,PROXY_T
 DOMAIN-SUFFIX,outlook.com,PROXY_T
 DOMAIN-SUFFIX,paragon-software.com,PROXY_T
 DOMAIN-SUFFIX,patreon.com,PROXY_T
+DOMAIN-SUFFIX,patreonusercontent.com,PROXY_T
 DOMAIN-SUFFIX,paypal.com,PROXY_T
 DOMAIN-SUFFIX,paytr.com,PROXY_T
 DOMAIN-SUFFIX,penguinrandomhouse.com,PROXY_T
