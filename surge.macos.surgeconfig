@@ -25,12 +25,10 @@ nameserver = system
 [SSID Setting]
 # Local SSID suspend rules belong in the linked profile copy.
 
-[Proxy Group]
-# Placeholders keep the managed base valid before local proxies are added.
-# In the linked profile copy, leave Proxy Group local and point these groups
-# at the real local proxy policies.
-PROXY_T = select, DIRECT
-PROXY_A = select, DIRECT
+[Proxy]
+# Safe placeholders keep the managed base valid before local proxies are added.
+PROXY_T = direct
+PROXY_A = direct
 
 [Rule]
 PROCESS-NAME,trusttunnel_client,DIRECT
