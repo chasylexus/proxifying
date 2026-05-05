@@ -6,5 +6,7 @@ surge.macos.ssid.local.dconf
 surge.ios.local.dconf
 surge.ios.ssid.local.dconf
 *.local.dconf
+*.local.txt
+surge.macos.proxies.local.txt
 surge.macos.local.conf
 surge.ios.local.conf

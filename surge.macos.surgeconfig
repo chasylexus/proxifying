@@ -2,7 +2,7 @@
 
 # Managed macOS entrypoint.
 # Public routing and platform rules are loaded from GitHub.
-# Proxy credentials and SSID names belong in the local linked profile copy.
+# Proxy credentials are loaded from a local policy-path file.
 
 [General]
 block-quic = all
@@ -23,12 +23,13 @@ enhanced-mode = fake-ip
 nameserver = system
 
 [SSID Setting]
-# Local SSID suspend rules belong in the linked profile copy.
+# Optional SSID/Subnet settings are configured locally in Surge UI.
 
-[Proxy]
-# Safe placeholders keep the managed base valid before local proxies are added.
-PROXY_T = direct
-PROXY_A = direct
+[Proxy Group]
+# Real local proxy policies are loaded from a local-only policy-path file.
+# Keep the file outside Git and put real credentials only there.
+PROXY_T = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_T$, DIRECT
+PROXY_A = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_A$, DIRECT
 
 [Rule]
 PROCESS-NAME,trusttunnel_client,DIRECT

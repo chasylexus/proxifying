@@ -2,7 +2,7 @@
 
 Public Surge routing profiles and local wrapper templates.
 
-Tracked files contain reusable routing logic, public wrappers, and placeholder examples only. Real proxy endpoints, usernames, passwords, Wi-Fi names, and other local-only values must live in ignored `*.local.dconf` files on each device.
+Tracked files contain reusable routing logic, public wrappers, and placeholder examples only. Real proxy endpoints, usernames, passwords, Wi-Fi names, and other local-only values must live in ignored local files on each device.
 
 ## What Goes Where
 
@@ -13,6 +13,7 @@ proxifying.macos.conf
 proxifying.macos.trust-tunnel.conf
 surge.ios.surgeconfig
 surge.ios.example.conf
+surge.macos.proxies.local.example.txt
 surge.macos.local.example.dconf
 surge.macos.trust-tunnel.local.example.dconf
 surge.macos.ssid.local.example.dconf
@@ -28,6 +29,7 @@ Local files that you create on your Mac and never commit:
 
 ```text
 ~/Library/Application Support/Surge/Profiles/surge.macos.local.dconf
+~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt
 ~/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf
 ~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
 ```
@@ -39,7 +41,7 @@ surge.ios.local.dconf
 surge.ios.ssid.local.dconf
 ```
 
-Use the managed macOS URL as the primary profile source. Create a Surge linked profile copy from it so public settings/rules stay synced from GitHub, while `[Proxy]` and `[SSID Setting]` remain local on this Mac. The `proxifying.macos*.conf` wrappers are local fallbacks.
+Use the managed macOS URL as the primary profile source. It loads local proxy policies from `surge.macos.proxies.local.txt` via `policy-path`, so proxy credentials stay local while the managed profile can still update as a whole from GitHub. The `proxifying.macos*.conf` wrappers are local fallbacks.
 
 ## Fresh macOS Setup
 
@@ -69,35 +71,25 @@ If you do not use Git, download the repository ZIP from GitHub, unzip it, and op
 mkdir -p "$HOME/Library/Application Support/Surge/Profiles"
 ```
 
-4. Copy only the local detached examples into Surge's profile folder.
+4. Copy the local proxy policy example into Surge's profile folder.
 
 ```sh
-cp surge.macos.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
-cp surge.macos.trust-tunnel.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.trust-tunnel.local.dconf"
-cp surge.macos.ssid.local.example.dconf "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
+cp surge.macos.proxies.local.example.txt "$HOME/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt"
 ```
 
-On a brand-new Mac these copy commands are safe. On a Mac that already has working local `*.local.dconf` files, do not overwrite them; copy the examples to a temporary name and merge by hand.
+On a Mac that already has a working local proxy policy file, do not overwrite it; copy the example to a temporary name and merge by hand.
 
 5. Fill in local proxy credentials.
 
 For the normal SOCKS5-through-TrustTunnel setup, edit:
 
 ```sh
-open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt"
 ```
 
-Keep `[Proxy]`, `PROXY_T`, and `PROXY_A`. Replace only the placeholder values. You will attach this file to the local linked profile copy below.
+This file intentionally has no `[Proxy]` header. Keep the policy names `TT_T` and `TT_A`, because the managed profile imports exactly those names into the `PROXY_T` and `PROXY_A` policy groups.
 
-6. Fill in local Wi-Fi suspend entries.
-
-```sh
-open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf"
-```
-
-Keep `[SSID Setting]`. Add real SSID names only in this local file.
-
-7. Import the managed macOS base profile in Surge.
+6. Import the managed macOS profile in Surge.
 
 In Surge Mac, import a profile from URL:
 
@@ -105,66 +97,34 @@ In Surge Mac, import a profile from URL:
 https://raw.githubusercontent.com/chasylexus/proxifying/main/surge.macos.surgeconfig
 ```
 
-This imported managed base has safe `direct` placeholders in `[Proxy]` and no local SSID names. The placeholders only let rules that reference `PROXY_T` and `PROXY_A` validate before local proxies are added.
-
-8. Create a linked profile copy.
-
-In Surge, select the imported managed base profile and choose:
+Select this managed profile directly. Do not create a linked profile copy for proxy credentials; the managed profile reads local proxy policies from:
 
 ```text
-Create Linked Profile Copy
+~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt
 ```
 
-In `Managed Profile Scope`, keep these sections synchronized:
+Use Surge's profile `Check for Updates` action to refresh the managed profile from GitHub.
 
-```text
-General
-DNS
-Rule
-Host
-```
+7. Optional Wi-Fi suspend entries.
 
-Do not synchronize these sections:
+SSID/Subnet settings are currently handled in Surge's UI rather than by a local detached file in the primary managed profile. Keep real SSID names out of GitHub.
 
-```text
-Proxy
-SSID Setting
-```
-
-9. Edit the local linked profile copy.
-
-In the linked profile copy, replace the local `[Proxy]` placeholder section with your real local proxy policies. You may include the detached local file:
-
-```ini
-[Proxy]
-#!include surge.macos.local.dconf
-```
-
-Replace the local `[SSID Setting]` section with:
-
-```ini
-[SSID Setting]
-#!include surge.macos.ssid.local.dconf
-```
-
-Then select the linked profile copy as active. If Surge refuses detached includes inside the linked copy, paste the contents of `surge.macos.local.dconf` and `surge.macos.ssid.local.dconf` directly into the local linked copy sections instead.
 
 ## Configure SOCKS5 TrustTunnel Proxies
 
 Edit this local file:
 
 ```sh
-open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt"
 ```
 
-Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`. Replace only the host, port, username, and password values as needed.
+This policy-path file intentionally has no `[Proxy]` header. Keep the local policy names `TT_T` and `TT_A`; the managed profile imports them into `PROXY_T` and `PROXY_A`.
 
 Example shape:
 
 ```ini
-[Proxy]
-PROXY_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
-PROXY_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
+TT_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
+TT_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
 ```
 
 What to put there:
@@ -174,7 +134,7 @@ What to put there:
 - `tt_t` and `tt_a` are local SOCKS5 usernames. They must match the SOCKS5 credentials configured in the TrustTunnel clients.
 - The password fields are local-only secrets. Do not paste them into GitHub or into any tracked file.
 
-Before enabling this Surge profile, start the TrustTunnel SOCKS5 clients so they are listening on the ports in `surge.macos.local.dconf`.
+Before enabling this Surge profile, start the TrustTunnel SOCKS5 clients so they are listening on the ports in `surge.macos.proxies.local.txt`.
 
 Then select the imported managed `surge.macos` profile in Surge. If you are using the older local fallback wrapper instead, select:
 
@@ -190,22 +150,21 @@ surge-cli switch-profile proxifying.macos
 
 ## Configure Native TrustTunnel
 
-Use this only for Surge's native experimental TrustTunnel proxy type. With the linked profile flow, put the native `trust-tunnel` proxy definitions in the local `[Proxy]` section or in `surge.macos.local.dconf` if that section includes the detached file.
+Use this only for Surge's native experimental TrustTunnel proxy type. For the primary managed profile, put the native `trust-tunnel` leaf policies in the local policy-path file.
 
 For the primary managed profile, edit this local file:
 
 ```sh
-open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.local.dconf"
+open -e "$HOME/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt"
 ```
 
-Keep the `[Proxy]` header and the policy names `PROXY_T` and `PROXY_A`. Replace placeholder hosts, usernames, passwords, and SNI values with your real local values.
+Keep the local policy names `TT_T` and `TT_A`. Replace placeholder hosts, usernames, passwords, and SNI values with your real local values.
 
 Example shape:
 
 ```ini
-[Proxy]
-PROXY_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
-PROXY_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+TT_T = trust-tunnel, tt-t.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
+TT_A = trust-tunnel, tt-a.example.invalid, 443, username=CHANGE_ME, password=CHANGE_ME, sni=tt-sni.example.invalid
 ```
 
 Notes:
@@ -377,14 +336,14 @@ The primary macOS base profile is managed directly by URL:
 #!MANAGED-CONFIG https://raw.githubusercontent.com/chasylexus/proxifying/main/surge.macos.surgeconfig interval=3600 strict=false
 
 [SSID Setting]
-# Local SSID suspend rules belong in the linked profile copy.
+# Optional SSID/Subnet settings are configured locally in Surge UI.
 
-[Proxy]
-PROXY_T = direct
-PROXY_A = direct
+[Proxy Group]
+PROXY_T = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_T$, DIRECT
+PROXY_A = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_A$, DIRECT
 ```
 
-Public macOS rules live inline in that managed base profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials and SSID names are added only to the local linked profile copy, never to GitHub. The managed base intentionally has no `Proxy Group` section.
+Public macOS rules live inline in that managed base profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials live only in `surge.macos.proxies.local.txt`, never in GitHub.
 
 When you add or remove domains, edit the public managed rule layer:
 
@@ -394,9 +353,9 @@ surge.surgeconfig
 surge.macos.rules.dconf
 ```
 
-For macOS, `surge.macos.surgeconfig` is now the source that the laptop should import directly and then convert into a linked profile copy. `surge.macos.rules.dconf`, `surge.surgeconfig`, and `surge.ruleset.*.list` are kept for fallback/compatibility profiles.
+For macOS, `surge.macos.surgeconfig` is now the source that the laptop should import directly as a managed profile. `surge.macos.rules.dconf`, `surge.surgeconfig`, and `surge.ruleset.*.list` are kept for fallback/compatibility profiles.
 
-After the change is committed and pushed to GitHub, update the managed or linked profile in Surge Mac 6:
+After the change is committed and pushed to GitHub, update the managed profile in Surge Mac 6:
 
 ```text
 Profiles -> select proxifying profile -> Check Updates Now
@@ -448,6 +407,7 @@ Local detached files do not update from GitHub and should not be overwritten dur
 Do not overwrite these local files during routine updates:
 
 ```text
+surge.macos.proxies.local.txt
 surge.macos.local.dconf
 surge.macos.trust-tunnel.local.dconf
 surge.macos.ssid.local.dconf
@@ -459,7 +419,7 @@ They contain local device settings and may contain secrets.
 
 ## Troubleshooting
 
-If macOS says `Linked profile not ready`, first check that the local detached files exist and keep their section headers. Then use Surge Mac 6's profile menu to run `Check Updates Now` for the managed or linked profile.
+For the primary macOS managed profile, proxy credentials are loaded from `surge.macos.proxies.local.txt` via `policy-path`. If `PROXY_T` or `PROXY_A` only shows `DIRECT`, check that this local file exists, has no `[Proxy]` header, and contains enabled `TT_T` / `TT_A` policy lines.
 
 If iOS says `Linked profile not ready`, check the local detached profile names first:
 
@@ -470,14 +430,14 @@ surge.ios.ssid.local.dconf
 
 Then check that each local detached profile starts with its section header.
 
-If Surge says the profile is invalid on macOS, run `surge-cli --check` against the wrapper file. On iOS, open the managed profile and local detached profiles in the editor. In both cases, every local detached file must keep its section header:
+If Surge says the profile is invalid on macOS, run `surge-cli --check` against the managed profile file or wrapper file. On iOS, open the managed profile and local detached profiles in the editor. iOS local detached files must keep their section headers:
 
 ```text
 [Proxy]
 [SSID Setting]
 ```
 
-If proxies do not connect in the macOS SOCKS5 setup, confirm that the TrustTunnel clients are running and listening on the same localhost ports used in `surge.macos.local.dconf`.
+If proxies do not connect in the macOS SOCKS5 setup, confirm that the TrustTunnel clients are running and listening on the same localhost ports used in `surge.macos.proxies.local.txt`.
 
 If native TrustTunnel does not connect on iOS, check `surge.ios.local.dconf`: endpoint, port, username, password, and `sni=...` must all match your TrustTunnel server setup.
 
@@ -492,7 +452,9 @@ surge.local.dconf
 surge.macos.local.dconf
 surge.macos.trust-tunnel.local.dconf
 surge.macos.ssid.local.dconf
+surge.macos.proxies.local.txt
 surge.ios.local.dconf
 surge.ios.ssid.local.dconf
 *.local.dconf
+*.local.txt
 ```
