@@ -98,6 +98,7 @@ This is different from `DIRECT` rules: `suspend=true` temporarily stops Surge pr
 The macOS wrappers include a local detached SSID section file:
 
 ```ini
+[SSID Setting]
 #!include surge.macos.ssid.local.dconf
 ```
 
@@ -106,6 +107,8 @@ Create and edit only:
 ```text
 ~/Library/Application Support/Surge/Profiles/surge.macos.ssid.local.dconf
 ```
+
+Keep the `[SSID Setting]` header in that local file. Surge validates the detached SSID file as a sectioned profile fragment; plain `SSID:... suspend=true` lines without the header may be rejected.
 
 Example local file content:
 
