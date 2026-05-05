@@ -105,7 +105,7 @@ In Surge Mac, import a profile from URL:
 https://raw.githubusercontent.com/chasylexus/proxifying/main/surge.macos.surgeconfig
 ```
 
-This imported managed base has safe `DIRECT` placeholders in `[Proxy]` and no local SSID names.
+This imported managed base has no `[Proxy]` section and no local SSID names. It only has safe placeholder policy groups so rules that reference `PROXY_T` and `PROXY_A` can validate before local proxies are added.
 
 8. Create a linked profile copy.
 
@@ -128,17 +128,28 @@ Do not synchronize these sections:
 
 ```text
 Proxy
+Proxy Group
 SSID Setting
 ```
 
 9. Edit the local linked profile copy.
 
-In the linked profile copy, replace the local `[Proxy]` section with:
+In the linked profile copy, add or replace the local `[Proxy]` section with your real local proxy policies. You may include the detached local file:
 
 ```ini
 [Proxy]
 #!include surge.macos.local.dconf
 ```
+
+Then make `[Proxy Group]` local and point `PROXY_T` / `PROXY_A` at the real local proxy policies you defined in `[Proxy]`. For example, if `surge.macos.local.dconf` defines leaf proxies named `TT_T` and `TT_A`:
+
+```ini
+[Proxy Group]
+PROXY_T = select, TT_T, DIRECT
+PROXY_A = select, TT_A, DIRECT
+```
+
+If your local `[Proxy]` already defines leaf proxies directly as `PROXY_T` and `PROXY_A`, do not also define groups with the same names. In that case, keep `[Proxy Group]` local but remove the placeholder `PROXY_T` / `PROXY_A` groups from the linked copy.
 
 Replace the local `[SSID Setting]` section with:
 
@@ -379,12 +390,12 @@ The primary macOS base profile is managed directly by URL:
 [SSID Setting]
 # Local SSID suspend rules belong in the linked profile copy.
 
-[Proxy]
-PROXY_T = direct
-PROXY_A = direct
+[Proxy Group]
+PROXY_T = select, DIRECT
+PROXY_A = select, DIRECT
 ```
 
-Public macOS rules live inline in that managed base profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials and SSID names are added only to the local linked profile copy, never to GitHub.
+Public macOS rules live inline in that managed base profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials and SSID names are added only to the local linked profile copy, never to GitHub. The managed base intentionally has no `[Proxy]` section.
 
 When you add or remove domains, edit the public managed rule layer:
 
