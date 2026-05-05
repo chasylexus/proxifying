@@ -339,8 +339,8 @@ The primary macOS base profile is managed directly by URL:
 # Optional SSID/Subnet settings are configured locally in Surge UI.
 
 [Proxy Group]
-PROXY_T = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_T$, DIRECT
-PROXY_A = select, policy-path="~/Library/Application Support/Surge/Profiles/surge.macos.proxies.local.txt", policy-regex-filter=^TT_A$, DIRECT
+PROXY_T = select, policy-path=surge.macos.proxies.local.txt, policy-regex-filter=^TT_T$
+PROXY_A = select, policy-path=surge.macos.proxies.local.txt, policy-regex-filter=^TT_A$
 ```
 
 Public macOS rules live inline in that managed base profile, so Surge can show manual rules as ordinary `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`, `IP-CIDR`, and `IP-CIDR6` rows. Proxy credentials live only in `surge.macos.proxies.local.txt`, never in GitHub.
