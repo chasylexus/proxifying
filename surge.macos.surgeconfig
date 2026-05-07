@@ -35,7 +35,6 @@ PROXY_A = select, policy-path=surge.macos.proxies.local.txt, policy-regex-filter
 PROCESS-NAME,trusttunnel_client,DIRECT
 PROCESS-NAME,/Applications/Throne.app/,DIRECT
 PROCESS-NAME,/Applications/nekoray.app/,DIRECT
-PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
 
 # ============================================================
 # 1. Inline priority overrides
