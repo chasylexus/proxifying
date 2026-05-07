@@ -18,7 +18,6 @@ PROXY = socks5, localhost, 2080
 [Rule]
 
 # Apps
-PROCESS-NAME,/System/Applications/Mail.app/Contents/MacOS/Mail,DIRECT
 
 # Internet
 DOMAIN,kvk.com,DIRECT
