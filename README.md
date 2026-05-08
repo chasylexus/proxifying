@@ -406,6 +406,7 @@ They contain local `[General]`, `[Proxy]`, `[SSID Setting]`, `[DNS]`, and `[Host
 RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t.list,PROXY_T,update-interval=3600
 RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-a.list,PROXY_A,update-interval=3600
 RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.direct.list,DIRECT,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t-late.list,PROXY_T,update-interval=3600
 ```
 
 When you add or remove routing domains or CIDRs, edit the relevant public rule-set file:
@@ -417,6 +418,7 @@ surge.ruleset.direct.list
 surge.ruleset.proxy-a.list
 surge.ruleset.proxy-t.list
 surge.ruleset.proxy-t-ip.list
+surge.ruleset.proxy-t-late.list
 ```
 
 `surge.ruleset.macos.direct.list` is macOS-only because it contains `PROCESS-NAME` rules. The rest of the rule-set files are shared by macOS and iOS.
