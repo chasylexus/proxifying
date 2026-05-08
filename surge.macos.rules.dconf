@@ -20,8 +20,15 @@ PROCESS-NAME,/Applications/nekoray.app/,DIRECT
 # ============================================================
 # 1. Inline priority overrides
 # ============================================================
-# Keep com.tr before DIRECT carrier suffixes, matching the live router priority.
+# Keep these before broad DIRECT suffixes, matching the live router priority.
 DOMAIN-SUFFIX,com.tr,PROXY_T
+DOMAIN-SUFFIX,2ip.ru,PROXY_T
+DOMAIN-SUFFIX,blogspot.ru,PROXY_T
+DOMAIN-SUFFIX,google.ru,PROXY_T
+DOMAIN-SUFFIX,microsoft.ru,PROXY_T
+DOMAIN-SUFFIX,mywishlist.ru,PROXY_T
+DOMAIN-SUFFIX,sci-hub.ru,PROXY_T
+DOMAIN-SUFFIX,youtube.ru,PROXY_T
 
 # ============================================================
 # 2. DIRECT / bypass baseline
@@ -66,6 +73,7 @@ DOMAIN-SUFFIX,wifi.mts.ru,DIRECT
 DOMAIN-SUFFIX,sbrf.ru,DIRECT
 DOMAIN-SUFFIX,tele2.ru,DIRECT
 DOMAIN-SUFFIX,yota.ru,DIRECT
+DOMAIN-SUFFIX,ru,DIRECT
 DOMAIN-SUFFIX,turkcell.com.tr,DIRECT
 DOMAIN-SUFFIX,turktelekom.com.tr,DIRECT
 DOMAIN-SUFFIX,vodafone.com.tr,DIRECT
@@ -232,6 +240,7 @@ DOMAIN-SUFFIX,fb.com,PROXY_T
 DOMAIN-SUFFIX,fbsbx.com,PROXY_T
 DOMAIN-SUFFIX,flipboard.com,PROXY_T
 DOMAIN-SUFFIX,getoutline.com,PROXY_T
+DOMAIN-SUFFIX,github.com,PROXY_T
 DOMAIN-SUFFIX,ggpht.com,PROXY_T
 DOMAIN-SUFFIX,google.com,PROXY_T
 DOMAIN-SUFFIX,play.google.com,PROXY_T
@@ -6400,6 +6409,11 @@ IP-CIDR6,2c0f:fef0::/60,PROXY_T,no-resolve
 IP-CIDR6,2c0f:ffa0::/32,PROXY_T,no-resolve
 
 # ============================================================
-# 8. Default
+# 8. Late broad PROXY_T catchalls
+# ============================================================
+RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t-late.list,PROXY_T,update-interval=3600
+
+# ============================================================
+# 9. Default
 # ============================================================
 FINAL,DIRECT

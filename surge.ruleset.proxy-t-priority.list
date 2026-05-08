@@ -2,3 +2,10 @@
 # Public resource. Keep credentials and endpoint details out of this file.
 
 DOMAIN-SUFFIX,com.tr
+DOMAIN-SUFFIX,2ip.ru
+DOMAIN-SUFFIX,blogspot.ru
+DOMAIN-SUFFIX,google.ru
+DOMAIN-SUFFIX,microsoft.ru
+DOMAIN-SUFFIX,mywishlist.ru
+DOMAIN-SUFFIX,sci-hub.ru
+DOMAIN-SUFFIX,youtube.ru

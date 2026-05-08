@@ -1,0 +1,5 @@
+# Proxifying Surge RULE-SET: late broad PROXY_T catchalls
+# Public resource. Keep credentials and endpoint details out of this file.
+# These rules are intentionally loaded after narrow T/A/D rules and before FINAL,DIRECT.
+
+DOMAIN-SUFFIX,ai
