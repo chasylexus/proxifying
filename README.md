@@ -416,7 +416,7 @@ Current public routing split:
 - `DIRECT`: local networks, captive portals, Apple/iCloud baseline, and final fallback.
 - `REJECT`: public advertising and malware-style reject lists.
 
-`whatismyip.com` is also pinned as an early `PROXY_A` rule in the wrappers before the broad DIRECT baseline. DIRECT IP/CIDR entries use `no-resolve`, so evaluating local IP ranges cannot force an unrelated proxied hostname through system DNS before its proxy rule is reached.
+`whatismyip.com` is also pinned as an early `PROXY_A` rule in the wrappers before the broad DIRECT baseline. The IPv6-only probe `wimi-api-v6.whatismyip.com` is rejected early because the local TT/SOCKS A path is IPv4-only; the normal `wimi-api.whatismyip.com` and site domains still use `PROXY_A`. DIRECT IP/CIDR entries use `no-resolve`, so evaluating local IP ranges cannot force an unrelated proxied hostname through system DNS before its proxy rule is reached.
 
 Apple TV+ is intentionally not part of `PROXY_A`.
 
