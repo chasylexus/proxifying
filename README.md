@@ -409,6 +409,24 @@ RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main
 RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t-late.list,PROXY_T,update-interval=3600
 ```
 
+Current public routing split:
+
+- `PROXY_T`: broad proxied services plus Google AI / Gemini / NotebookLM.
+- `PROXY_A`: manual A-only diagnostics, including `whatismyip.com`, plus Netflix, Hulu, Disney+, HBO/Max, ESPN, Prime Video, Peacock, and related streaming domains.
+- `DIRECT`: local networks, captive portals, Apple/iCloud baseline, and final fallback.
+- `REJECT`: public advertising and malware-style reject lists.
+
+Apple TV+ is intentionally not part of `PROXY_A`.
+
+The wrappers keep global DNS as `system`, then use `[Host]` mappings for proxied external resources only:
+
+```ini
+RULE-SET:https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-a.list = server:https://dns.adguard-dns.com/dns-query
+DOMAIN-SET:https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main/Services/google_ai.lst = server:https://dns.adguard-dns.com/dns-query
+```
+
+That means DIRECT/default resources are not moved to DoH by this repository profile. The DoH server is tied only to listed proxied resources, while the rest keeps the system DNS path.
+
 When you add or remove routing domains or CIDRs, edit the relevant public rule-set file:
 
 ```text
