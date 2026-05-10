@@ -416,6 +416,8 @@ Current public routing split:
 - `DIRECT`: local networks, captive portals, Apple/iCloud baseline, and final fallback.
 - `REJECT`: public advertising and malware-style reject lists.
 
+`whatismyip.com` is also pinned as an early `PROXY_A` rule in the wrappers before the broad DIRECT baseline. DIRECT IP/CIDR entries use `no-resolve`, so evaluating local IP ranges cannot force an unrelated proxied hostname through system DNS before its proxy rule is reached.
+
 Apple TV+ is intentionally not part of `PROXY_A`.
 
 The wrappers keep DNS as `system`. Do not add broad `[Host]` DoH bindings to the public wrappers without validating them on-device first; a previous attempt to bind proxied external rule resources to DoH caused resolver failures in the local Surge runtime. Routing remains split by `PROXY_T`, `PROXY_A`, `DIRECT`, and `REJECT`.

@@ -437,18 +437,18 @@ RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/
 # 6. LAN / Local IP direct
 # ============================================================
 DOMAIN-SUFFIX,local,DIRECT
-IP-CIDR,127.0.0.0/8,DIRECT
-IP-CIDR,172.16.0.0/12,DIRECT
-IP-CIDR,192.168.0.0/16,DIRECT
-IP-CIDR,10.0.0.0/8,DIRECT
-IP-CIDR,17.0.0.0/8,DIRECT
-IP-CIDR,51.250.48.0/24,DIRECT
-IP-CIDR,100.64.0.0/10,DIRECT
-IP-CIDR,135.106.130.0/24,DIRECT
-IP-CIDR,224.0.0.0/4,DIRECT
-IP-CIDR6,::1/128,DIRECT
-IP-CIDR6,FE80::/10,DIRECT
-IP-CIDR6,FC00::/7,DIRECT
+IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,17.0.0.0/8,DIRECT,no-resolve
+IP-CIDR,51.250.48.0/24,DIRECT,no-resolve
+IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+IP-CIDR,135.106.130.0/24,DIRECT,no-resolve
+IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+IP-CIDR6,::1/128,DIRECT,no-resolve
+IP-CIDR6,FE80::/10,DIRECT,no-resolve
+IP-CIDR6,FC00::/7,DIRECT,no-resolve
 
 # ============================================================
 # 7. PROXY_T IP/CIDR fallback
