@@ -89,55 +89,72 @@ DOMAIN-KEYWORD,wifi,DIRECT
 # ============================================================
 # --- Proxifying A domains ---
 DOMAIN,api.fast.com,PROXY_A
-DOMAIN,apis.google.com,PROXY_A
-DOMAIN,clients6.google.com,PROXY_A
-DOMAIN,play.google.com,PROXY_A
-DOMAIN,colab.research.google.com,PROXY_A
-DOMAIN,aida.googleapis.com,PROXY_A
-DOMAIN,aisandbox-pa.googleapis.com,PROXY_A
-DOMAIN,antigravity.googleapis.com,PROXY_A
-DOMAIN,antigravity-pa.googleapis.com,PROXY_A
-DOMAIN,firebaseinstallations.googleapis.com,PROXY_A
-DOMAIN,geller-pa.googleapis.com,PROXY_A
-DOMAIN,proactivebackend-pa.googleapis.com,PROXY_A
-DOMAIN,robinfrontend-pa.googleapis.com,PROXY_A
-DOMAIN,speechs3proto2-pa.googleapis.com,PROXY_A
 DOMAIN,www.netflix.com,PROXY_A
-DOMAIN,stitch.withgoogle.com,PROXY_A
 DOMAIN-SUFFIX,astrill.com,PROXY_A
-DOMAIN-SUFFIX,deepmind.com,PROXY_A
 DOMAIN-SUFFIX,fast.com,PROXY_A
-DOMAIN-SUFFIX,aistudio.google.com,PROXY_A
-DOMAIN-SUFFIX,bard.google.com,PROXY_A
-DOMAIN-SUFFIX,gemini.google.com,PROXY_A
-DOMAIN-SUFFIX,jules.google.com,PROXY_A
-DOMAIN-SUFFIX,makersuite.google.com,PROXY_A
-DOMAIN-SUFFIX,notebooklm.google.com,PROXY_A
-DOMAIN-SUFFIX,generativelanguage.googleapis.com,PROXY_A
 DOMAIN-SUFFIX,netflix.com,PROXY_A
-DOMAIN-SUFFIX,peacocktv.com,PROXY_A
-DOMAIN-SUFFIX,primevideo.com,PROXY_A
-DOMAIN-SUFFIX,whatismyip.com,PROXY_A
-DOMAIN-SUFFIX,ai.google.dev,PROXY_A
-DOMAIN-SUFFIX,antigravity-unleash.goog,PROXY_A
-DOMAIN-SUFFIX,antigravity.google,PROXY_A
-DOMAIN-SUFFIX,deepmind.google,PROXY_A
-DOMAIN-SUFFIX,gemini.google,PROXY_A
-DOMAIN-SUFFIX,generativeai.google,PROXY_A
-DOMAIN-SUFFIX,jules.google,PROXY_A
-DOMAIN-SUFFIX,labs.google,PROXY_A
-DOMAIN-SUFFIX,notebooklm.google,PROXY_A
 DOMAIN-SUFFIX,nflxext.net,PROXY_A
 DOMAIN-SUFFIX,nflximg.net,PROXY_A
 DOMAIN-SUFFIX,nflxso.net,PROXY_A
 DOMAIN-SUFFIX,nflxvideo.net,PROXY_A
+DOMAIN-SUFFIX,peacocktv.com,PROXY_A
+DOMAIN-SUFFIX,hulu.com,PROXY_A
+DOMAIN-SUFFIX,huluim.com,PROXY_A
+DOMAIN-SUFFIX,hulustream.com,PROXY_A
+DOMAIN-SUFFIX,disneyplus.com,PROXY_A
+DOMAIN-SUFFIX,disney-plus.net,PROXY_A
+DOMAIN-SUFFIX,hbo.com,PROXY_A
+DOMAIN-SUFFIX,hbomax.com,PROXY_A
+DOMAIN-SUFFIX,max.com,PROXY_A
+DOMAIN-SUFFIX,primevideo.com,PROXY_A
+DOMAIN-SUFFIX,amazonvideo.com,PROXY_A
+DOMAIN-SUFFIX,espn.com,PROXY_A
+DOMAIN-SUFFIX,espncdn.com,PROXY_A
+DOMAIN-SUFFIX,espnqa.com,PROXY_A
+DOMAIN-SUFFIX,whatismyip.com,PROXY_A
 
 # --- Google AI / Gemini / NotebookLM ---
-DOMAIN-SET,https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main/Services/google_ai.lst,PROXY_A,update-interval=3600
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list,PROXY_A,update-interval=3600
+DOMAIN,apis.google.com,PROXY_T
+DOMAIN,clients6.google.com,PROXY_T
+DOMAIN,play.google.com,PROXY_T
+DOMAIN,colab.research.google.com,PROXY_T
+DOMAIN,aida.googleapis.com,PROXY_T
+DOMAIN,aisandbox-pa.googleapis.com,PROXY_T
+DOMAIN,antigravity.googleapis.com,PROXY_T
+DOMAIN,antigravity-pa.googleapis.com,PROXY_T
+DOMAIN,firebaseinstallations.googleapis.com,PROXY_T
+DOMAIN,geller-pa.googleapis.com,PROXY_T
+DOMAIN,proactivebackend-pa.googleapis.com,PROXY_T
+DOMAIN,robinfrontend-pa.googleapis.com,PROXY_T
+DOMAIN,speechs3proto2-pa.googleapis.com,PROXY_T
+DOMAIN,stitch.withgoogle.com,PROXY_T
+DOMAIN-SUFFIX,aistudio.google.com,PROXY_T
+DOMAIN-SUFFIX,bard.google.com,PROXY_T
+DOMAIN-SUFFIX,gemini.google.com,PROXY_T
+DOMAIN-SUFFIX,jules.google.com,PROXY_T
+DOMAIN-SUFFIX,makersuite.google.com,PROXY_T
+DOMAIN-SUFFIX,notebooklm.google.com,PROXY_T
+DOMAIN-SUFFIX,generativelanguage.googleapis.com,PROXY_T
+DOMAIN-SUFFIX,ai.google.dev,PROXY_T
+DOMAIN-SUFFIX,antigravity-unleash.goog,PROXY_T
+DOMAIN-SUFFIX,antigravity.google,PROXY_T
+DOMAIN-SUFFIX,deepmind.com,PROXY_T
+DOMAIN-SUFFIX,deepmind.google,PROXY_T
+DOMAIN-SUFFIX,gemini.google,PROXY_T
+DOMAIN-SUFFIX,generativeai.google,PROXY_T
+DOMAIN-SUFFIX,jules.google,PROXY_T
+DOMAIN-SUFFIX,labs.google,PROXY_T
+DOMAIN-SUFFIX,notebooklm.google,PROXY_T
+DOMAIN-SET,https://raw.githubusercontent.com/itdoginfo/allow-domains/refs/heads/main/Services/google_ai.lst,PROXY_T,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Surge/Gemini/Gemini.list,PROXY_T,update-interval=3600
 
 # --- Streaming / geo-specific A exit ---
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Netflix/Netflix.list,PROXY_A,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hulu/Hulu.list,PROXY_A,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Disney/Disney.list,PROXY_A,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/HBO/HBO.list,PROXY_A,update-interval=3600
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PrimeVideo/PrimeVideo.list,PROXY_A,update-interval=3600
+# ESPN is included manually in the Proxifying A domains above.
 
 # ============================================================
 # 4. PROXY_T domain routing
@@ -410,6 +427,8 @@ DOMAIN-KEYWORD,whatsapp,PROXY_T
 # ============================================================
 # 5. REJECT (ad blocking)
 # ============================================================
+# --- Upstream ad and malware reject lists ---
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT,update-interval=3600
 RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/adguards.list,REJECT,update-interval=3600
 RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/apple.list,REJECT,update-interval=3600
 RULE-SET,https://raw.githubusercontent.com/Ja7ad/ShadowRocket/main/rules/reject/spotify.list,REJECT,update-interval=3600

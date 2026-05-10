@@ -1,46 +1,32 @@
 # Proxifying Surge RULE-SET: PROXY_A domains
 # Public resource. Keep credentials and endpoint details out of this file.
 
+# Manual diagnostics and A-only streaming services.
 DOMAIN,api.fast.com
-DOMAIN,apis.google.com
-DOMAIN,clients6.google.com
-DOMAIN,play.google.com
-DOMAIN,colab.research.google.com
-DOMAIN,aida.googleapis.com
-DOMAIN,aisandbox-pa.googleapis.com
-DOMAIN,antigravity.googleapis.com
-DOMAIN,antigravity-pa.googleapis.com
-DOMAIN,firebaseinstallations.googleapis.com
-DOMAIN,geller-pa.googleapis.com
-DOMAIN,proactivebackend-pa.googleapis.com
-DOMAIN,robinfrontend-pa.googleapis.com
-DOMAIN,speechs3proto2-pa.googleapis.com
 DOMAIN,www.netflix.com
-DOMAIN,stitch.withgoogle.com
 DOMAIN-SUFFIX,astrill.com
-DOMAIN-SUFFIX,deepmind.com
 DOMAIN-SUFFIX,fast.com
-DOMAIN-SUFFIX,aistudio.google.com
-DOMAIN-SUFFIX,bard.google.com
-DOMAIN-SUFFIX,gemini.google.com
-DOMAIN-SUFFIX,jules.google.com
-DOMAIN-SUFFIX,makersuite.google.com
-DOMAIN-SUFFIX,notebooklm.google.com
-DOMAIN-SUFFIX,generativelanguage.googleapis.com
+
+# Netflix / Peacock / Hulu / Disney+ / HBO Max / ESPN / Prime Video.
 DOMAIN-SUFFIX,netflix.com
-DOMAIN-SUFFIX,peacocktv.com
-DOMAIN-SUFFIX,primevideo.com
-DOMAIN-SUFFIX,whatismyip.com
-DOMAIN-SUFFIX,ai.google.dev
-DOMAIN-SUFFIX,antigravity-unleash.goog
-DOMAIN-SUFFIX,antigravity.google
-DOMAIN-SUFFIX,deepmind.google
-DOMAIN-SUFFIX,gemini.google
-DOMAIN-SUFFIX,generativeai.google
-DOMAIN-SUFFIX,jules.google
-DOMAIN-SUFFIX,labs.google
-DOMAIN-SUFFIX,notebooklm.google
 DOMAIN-SUFFIX,nflxext.net
 DOMAIN-SUFFIX,nflximg.net
 DOMAIN-SUFFIX,nflxso.net
 DOMAIN-SUFFIX,nflxvideo.net
+DOMAIN-SUFFIX,peacocktv.com
+DOMAIN-SUFFIX,hulu.com
+DOMAIN-SUFFIX,huluim.com
+DOMAIN-SUFFIX,hulustream.com
+DOMAIN-SUFFIX,disneyplus.com
+DOMAIN-SUFFIX,disney-plus.net
+DOMAIN-SUFFIX,hbo.com
+DOMAIN-SUFFIX,hbomax.com
+DOMAIN-SUFFIX,max.com
+DOMAIN-SUFFIX,primevideo.com
+DOMAIN-SUFFIX,amazonvideo.com
+DOMAIN-SUFFIX,espn.com
+DOMAIN-SUFFIX,espncdn.com
+DOMAIN-SUFFIX,espnqa.com
+
+# A-exit diagnostics.
+DOMAIN-SUFFIX,whatismyip.com
