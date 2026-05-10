@@ -111,7 +111,6 @@ DOMAIN-SUFFIX,amazonvideo.com,PROXY_A
 DOMAIN-SUFFIX,espn.com,PROXY_A
 DOMAIN-SUFFIX,espncdn.com,PROXY_A
 DOMAIN-SUFFIX,espnqa.com,PROXY_A
-DOMAIN,wimi-api-v6.whatismyip.com,REJECT
 DOMAIN-SUFFIX,whatismyip.com,PROXY_A
 
 # --- Google AI / Gemini / NotebookLM ---

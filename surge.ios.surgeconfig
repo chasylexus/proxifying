@@ -32,7 +32,6 @@ nameserver = system
 RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main/surge.ruleset.proxy-t-priority.list,PROXY_T,update-interval=3600
 
 # 1b. Early A diagnostics before DIRECT rule-set IP ranges.
-DOMAIN,wimi-api-v6.whatismyip.com,REJECT
 DOMAIN-SUFFIX,whatismyip.com,PROXY_A
 
 # 2. DIRECT / captive / LAN baseline.
