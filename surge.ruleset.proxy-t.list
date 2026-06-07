@@ -50,6 +50,8 @@ DOMAIN,api.telegram.org
 DOMAIN,web.telegram.org
 DOMAIN,ottclub.tv
 DOMAIN-SUFFIX,filmix.ac
+DOMAIN-SUFFIX,lostfilm.download
+DOMAIN-SUFFIX,lostfilm.tv
 DOMAIN-SUFFIX,hdrezka.ac
 DOMAIN-SUFFIX,rezka.ag
 DOMAIN-SUFFIX,cerebras.ai
