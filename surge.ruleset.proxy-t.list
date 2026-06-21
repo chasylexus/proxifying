@@ -175,10 +175,7 @@ DOMAIN-SUFFIX,setapp.com
 DOMAIN-SUFFIX,sharepoint.com
 DOMAIN-SUFFIX,smallstep.com
 DOMAIN-SUFFIX,softorino.com
-DOMAIN-SUFFIX,login.sonos.com
-DOMAIN-SUFFIX,musicpartners.sonos.com
-DOMAIN-SUFFIX,play.sonos.com
-DOMAIN-SUFFIX,ws.sonos.com
+DOMAIN-SUFFIX,sonos.com
 DOMAIN-SUFFIX,sora.com
 DOMAIN-SUFFIX,spotify.com
 DOMAIN-SUFFIX,spinorama.org
