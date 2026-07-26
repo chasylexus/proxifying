@@ -3,7 +3,7 @@
 
 DOMAIN-SUFFIX,com.tr
 DOMAIN-SUFFIX,blogspot.ru
-DOMAIN,eu-irl-00001.s3.dualstack.eu-west-1.amazonaws.com
+DOMAIN-SUFFIX,s3.dualstack.eu-west-1.amazonaws.com
 DOMAIN-SUFFIX,google.ru
 DOMAIN-SUFFIX,microsoft.ru
 DOMAIN-SUFFIX,mywishlist.ru
