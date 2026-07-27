@@ -76,6 +76,9 @@ DOMAIN-SUFFIX,kinogo.biz
 DOMAIN-SUFFIX,whatsapp.biz
 DOMAIN-SUFFIX,fap-guru.cc
 DOMAIN-SUFFIX,voidboost.cc
+DOMAIN-SUFFIX,voidboost.one
+DOMAIN-WILDCARD,voidboost.*
+DOMAIN-WILDCARD,*.voidboost.*
 DOMAIN-SUFFIX,huggingface.co
 DOMAIN-SUFFIX,scdn.co
 DOMAIN-SUFFIX,t.co
