@@ -6,3 +6,9 @@
 
 PROXY_T = socks5, 127.0.0.1, 1080, tt_t, CHANGE_ME_TT_T_SOCKS_PASSWORD, udp-relay=true
 PROXY_A = socks5, 127.0.0.1, 1081, tt_a, CHANGE_ME_TT_A_SOCKS_PASSWORD, udp-relay=true
+HOME_TS = tailscale, section-name=home, test-timeout=8, underlying-proxy=TS-UNDERLAY
+
+[Tailscale home]
+# Replace these placeholders only in the ignored surge.macos.local.dconf.
+auth-key = CHANGE_ME_TAILSCALE_AUTH_KEY
+hostname = CHANGE_ME_TAILSCALE_HOSTNAME
