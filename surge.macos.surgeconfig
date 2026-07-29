@@ -181,6 +181,7 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 # --- Community rule-sets for broad geosite-style coverage ---
 RULE-SET,BM7_YOUTUBE_04,PROXY_T
 RULE-SET,BM7_SPOTIFY_05,PROXY_T
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/LastFM/LastFM.list,PROXY_T,update-interval=3600
 RULE-SET,BM7_FACEBOOK_06,PROXY_T
 RULE-SET,BM7_INSTAGRAM_07,PROXY_T
 RULE-SET,BM7_TWITTER_08,PROXY_T

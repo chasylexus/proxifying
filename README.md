@@ -411,7 +411,7 @@ RULE-SET,https://raw.githubusercontent.com/chasylexus/proxifying/refs/heads/main
 
 Current public routing split:
 
-- `PROXY_T`: broad proxied services plus Google AI / Gemini / NotebookLM.
+- `PROXY_T`: broad proxied services, including Last.fm, plus Google AI / Gemini / NotebookLM.
 - `PROXY_A`: manual A-only diagnostics, including `whatismyip.com`, plus Netflix, Hulu, Disney+, HBO/Max, ESPN, Prime Video, Peacock, and related streaming domains.
 - `DIRECT`: local networks, captive portals, Apple/iCloud baseline, and final fallback.
 - `REJECT`: public advertising and malware-style reject lists.
