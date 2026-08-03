@@ -1,6 +1,40 @@
 # Proxifying Surge RULE-SET: PROXY_T domains and keywords
 # Public resource. Keep credentials and endpoint details out of this file.
 
+# FatSecret international sites and first-party assets.
+DOMAIN-SUFFIX,fatsecret.com
+DOMAIN-SUFFIX,fatsecret.com.ar
+DOMAIN-SUFFIX,fatsecret.com.au
+DOMAIN-SUFFIX,fatsecret.com.br
+DOMAIN-SUFFIX,fatsecret.com.mx
+DOMAIN-SUFFIX,fatsecret.com.sg
+DOMAIN-SUFFIX,fatsecret.com.tr
+DOMAIN-SUFFIX,fatsecret.ca
+DOMAIN-SUFFIX,fatsecret.cl
+DOMAIN-SUFFIX,fatsecret.cn
+DOMAIN-SUFFIX,fatsecret.co.id
+DOMAIN-SUFFIX,fatsecret.co.in
+DOMAIN-SUFFIX,fatsecret.co.nz
+DOMAIN-SUFFIX,fatsecret.co.uk
+DOMAIN-SUFFIX,fatsecret.co.za
+DOMAIN-SUFFIX,fatsecret.at
+DOMAIN-SUFFIX,fatsecret.be
+DOMAIN-SUFFIX,fatsecret.ch
+DOMAIN-SUFFIX,fatsecret.de
+DOMAIN-SUFFIX,fatsecret.dk
+DOMAIN-SUFFIX,fatsecret.es
+DOMAIN-SUFFIX,fatsecret.fi
+DOMAIN-SUFFIX,fatsecret.fr
+DOMAIN-SUFFIX,fatsecret.it
+DOMAIN-SUFFIX,fatsecret.jp
+DOMAIN-SUFFIX,fatsecret.kr
+DOMAIN-SUFFIX,fatsecret.nl
+DOMAIN-SUFFIX,fatsecret.pl
+DOMAIN-SUFFIX,fatsecret.pt
+DOMAIN-SUFFIX,fatsecret.ru
+DOMAIN-SUFFIX,fatsecret.se
+DOMAIN-SUFFIX,ftscrt.com
+
 # Google AI / Gemini / NotebookLM.
 DOMAIN,apis.google.com
 DOMAIN,clients6.google.com
